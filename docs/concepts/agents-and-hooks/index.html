@@ -1,0 +1,315 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-qo5ae45u"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Agents and hooks | Natamux</title><link rel="canonical" href="https://natamux.github.io/docs/concepts/agents-and-hooks/"/><link rel="sitemap" href="/sitemap-index.xml"/><link rel="shortcut icon" href="/icon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v7.3.8"/><meta name="generator" content="Starlight v0.42.6"/><meta property="og:title" content="Agents and hooks"/><meta property="og:type" content="article"/><meta property="og:url" content="https://natamux.github.io/docs/concepts/agents-and-hooks/"/><meta property="og:locale" content="en"/><meta property="og:description" content="How Natamux starts an agent in a task terminal and learns what the agent is doing."/><meta property="og:site_name" content="Natamux"/><meta name="description" content="How Natamux starts an agent in a task terminal and learns what the agent is doing."/><meta property="og:image" content="https://natamux.github.io/media/v2/og.jpg"/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:image" content="https://natamux.github.io/media/v2/og.jpg"/><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/_astro/print.ehPL0gv-.css" media="print"><link rel="stylesheet" href="/_astro/common.BzxNQeKY.css"><style>@layer starlight.components{svg:where(.astro-vnwekxjx){color:var(--sl-icon-color);font-size:var(--sl-icon-size,1em);width:1em;height:1em;overflow:visible}}
+</style><script type="module" src="/_astro/page.cNngjUgL.js"></script></head><body class="astro-qo5ae45u"><a class="sl-skip-link astro-zwmawshx" href="#_top">Skip to content</a><div class="page sl-flex astro-2lz5n7h7"><header class="header astro-2lz5n7h7"><div class="header astro-juoe6wwo"><div class="title-wrapper sl-flex astro-juoe6wwo"><a href="/" class="site-title sl-flex astro-dem6id4i"><img class="astro-dem6id4i" alt="Natamux" src="/_astro/icon.NcexVJ30.svg" width="1024" height="1024"><span class="astro-dem6id4i" translate="no">Natamux</span></a></div><div class="sl-flex print:hidden astro-juoe6wwo"><site-search class="astro-juoe6wwo astro-ms3zerf7" data-translations="{&quot;placeholder&quot;:&quot;Search&quot;}"><button data-open-modal disabled aria-label="Search" aria-keyshortcuts="Control+K" class="astro-ms3zerf7"><svg aria-hidden="true" class="astro-ms3zerf7 astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg><span class="sl-hidden md:sl-block astro-ms3zerf7" aria-hidden="true">Search</span><kbd class="sl-hidden md:sl-flex astro-ms3zerf7" style="display: none;"><kbd class="astro-ms3zerf7">Ctrl</kbd><kbd class="astro-ms3zerf7">K</kbd></kbd></button><dialog style="padding:0" aria-label="Search" class="astro-ms3zerf7"><div class="dialog-frame sl-flex astro-ms3zerf7"><button data-close-modal class="sl-flex md:sl-hidden astro-ms3zerf7">Cancel</button><div class="search-container astro-ms3zerf7"><div id="starlight__search" class="astro-ms3zerf7"></div></div></div></dialog></site-search><script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script><script type="module" src="/_astro/Search.astro_astro_type_script_index_0_lang.g9hoxVJg.js"></script></div><div class="sl-hidden md:sl-flex print:hidden right-group astro-juoe6wwo"><div class="sl-flex social-icons astro-juoe6wwo"><a href="https://github.com/lenhatthanh20/natamux" rel="me" class="sl-flex astro-y7mukufa"><span class="sr-only astro-y7mukufa">GitHub</span><svg aria-hidden="true" class="astro-y7mukufa astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-nxv6nwzk"><span class="sr-only astro-nxv6nwzk">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-nxv6nwzk astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-nxv6nwzk"><option value="dark" class="astro-nxv6nwzk">Dark</option><option value="light" class="astro-nxv6nwzk">Light</option><option value="auto" selected class="astro-nxv6nwzk">Auto</option></select><svg aria-hidden="true" class="icon caret astro-nxv6nwzk astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script><script type="module">var e=`starlight-theme`,t=e=>e===`auto`||e===`dark`||e===`light`?e:`auto`,n=()=>t(typeof localStorage<`u`&&localStorage.getItem(e));function r(t){typeof localStorage<`u`&&localStorage.setItem(e,t===`light`||t===`dark`?t:``)}var i=()=>matchMedia(`(prefers-color-scheme: light)`).matches?`light`:`dark`;function a(e){StarlightThemeProvider.updatePickers(e),document.documentElement.dataset.theme=e===`auto`?i():e,r(e)}matchMedia(`(prefers-color-scheme: light)`).addEventListener(`change`,()=>{n()===`auto`&&a(`auto`)});var o=class extends HTMLElement{constructor(){super(),a(n()),this.querySelector(`select`)?.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&a(t(e.currentTarget.value))})}};customElements.define(`starlight-theme-select`,o);</script><script type="module">var e=class extends HTMLElement{constructor(){super();let e=this.querySelector(`select`);e&&(e.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=e.currentTarget.value)}),window.addEventListener(`pageshow`,t=>{if(!t.persisted)return;let n=e.querySelector(`option[selected]`)?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}};customElements.define(`starlight-lang-select`,e);</script></div></div></header><nav class="sidebar print:hidden astro-2lz5n7h7" aria-label="Main"><button popovertarget="starlight__sidebar" class="sl-menu-button sl-flex md:sl-hidden print:hidden astro-izg6nbmn"><svg aria-hidden="true" class="open-menu astro-izg6nbmn astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg><svg aria-hidden="true" class="close-menu astro-izg6nbmn astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg><span class="sr-only astro-izg6nbmn">Menu</span></button><script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script><sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-2lz5n7h7"><div class="sidebar-content sl-flex astro-2lz5n7h7"><sl-sidebar-state-persist data-hash="0lgwg75" class="astro-fvmsl5ne"><script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script><ul class="top-level astro-vszp3i2k"><li class="astro-vszp3i2k"><details open class="astro-vszp3i2k"><summary class="astro-vszp3i2k"><span class="group-label astro-vszp3i2k"><span class="large astro-vszp3i2k">Start</span></span><svg aria-hidden="true" class="caret astro-vszp3i2k astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="0"></sl-sidebar-restore><ul class="astro-vszp3i2k"><li class="astro-vszp3i2k"><a href="/docs/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">What is Natamux</span></a></li><li class="astro-vszp3i2k"><a href="/docs/getting-started/install/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Install Natamux</span></a></li><li class="astro-vszp3i2k"><a href="/docs/getting-started/quick-start/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Quick start</span></a></li></ul></details></li><li class="astro-vszp3i2k"><details open class="astro-vszp3i2k"><summary class="astro-vszp3i2k"><span class="group-label astro-vszp3i2k"><span class="large astro-vszp3i2k">Workflows</span></span><svg aria-hidden="true" class="caret astro-vszp3i2k astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="1"></sl-sidebar-restore><ul class="astro-vszp3i2k"><li class="astro-vszp3i2k"><a href="/docs/guides/workflows/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Build a workflow</span><span class="sl-badge tip small  astro-vszp3i2k astro-jq2q5o6x">New</span></a></li><li class="astro-vszp3i2k"><a href="/docs/concepts/stages/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Stages</span></a></li><li class="astro-vszp3i2k"><a href="/docs/concepts/review-loop/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">The review loop</span><span class="sl-badge tip small  astro-vszp3i2k astro-jq2q5o6x">Core</span></a></li><li class="astro-vszp3i2k"><a href="/docs/guides/mix-agents/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Mix agents in one task</span><span class="sl-badge tip small  astro-vszp3i2k astro-jq2q5o6x">New</span></a></li><li class="astro-vszp3i2k"><a href="/docs/guides/fan-out/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Fan out</span></a></li><li class="astro-vszp3i2k"><a href="/docs/guides/project-settings/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Project settings</span></a></li></ul></details></li><li class="astro-vszp3i2k"><details open class="astro-vszp3i2k"><summary class="astro-vszp3i2k"><span class="group-label astro-vszp3i2k"><span class="large astro-vszp3i2k">Use the app</span></span><svg aria-hidden="true" class="caret astro-vszp3i2k astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="2"></sl-sidebar-restore><ul class="astro-vszp3i2k"><li class="astro-vszp3i2k"><a href="/docs/guides/dashboard/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Dashboard</span></a></li><li class="astro-vszp3i2k"><a href="/docs/guides/terminal/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Terminal and Agents view</span></a></li><li class="astro-vszp3i2k"><a href="/docs/guides/changes-and-history/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Changes and history</span></a></li><li class="astro-vszp3i2k"><a href="/docs/guides/github/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">GitHub</span></a></li><li class="astro-vszp3i2k"><a href="/docs/guides/command-line/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Use the command line</span></a></li><li class="astro-vszp3i2k"><a href="/docs/guides/desktop-app/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Desktop app</span></a></li><li class="astro-vszp3i2k"><a href="/docs/guides/status-icons/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Status icons</span></a></li></ul></details></li><li class="astro-vszp3i2k"><details open class="astro-vszp3i2k"><summary class="astro-vszp3i2k"><span class="group-label astro-vszp3i2k"><span class="large astro-vszp3i2k">Concepts</span></span><svg aria-hidden="true" class="caret astro-vszp3i2k astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="3"></sl-sidebar-restore><ul class="astro-vszp3i2k"><li class="astro-vszp3i2k"><a href="/docs/concepts/tasks/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Tasks</span></a></li><li class="astro-vszp3i2k"><a href="/docs/concepts/workspaces/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Workspaces</span></a></li><li class="astro-vszp3i2k"><a href="/docs/concepts/agents-and-hooks/" aria-current="page" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Agents and hooks</span></a></li></ul></details></li><li class="astro-vszp3i2k"><details open class="astro-vszp3i2k"><summary class="astro-vszp3i2k"><span class="group-label astro-vszp3i2k"><span class="large astro-vszp3i2k">Agents</span></span><svg aria-hidden="true" class="caret astro-vszp3i2k astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="4"></sl-sidebar-restore><ul class="astro-vszp3i2k"><li class="astro-vszp3i2k"><a href="/docs/agents/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Agents</span></a></li><li class="astro-vszp3i2k"><a href="/docs/agents/claude-code/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Claude Code</span></a></li><li class="astro-vszp3i2k"><a href="/docs/agents/codex/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Codex</span></a></li><li class="astro-vszp3i2k"><a href="/docs/agents/gemini/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Gemini CLI</span></a></li><li class="astro-vszp3i2k"><a href="/docs/agents/copilot/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">GitHub Copilot CLI</span></a></li><li class="astro-vszp3i2k"><a href="/docs/agents/cursor/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Cursor CLI</span></a></li><li class="astro-vszp3i2k"><a href="/docs/agents/other-agents/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Other agents</span></a></li></ul></details></li><li class="astro-vszp3i2k"><details open class="astro-vszp3i2k"><summary class="astro-vszp3i2k"><span class="group-label astro-vszp3i2k"><span class="large astro-vszp3i2k">Self-host</span></span><svg aria-hidden="true" class="caret astro-vszp3i2k astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="5"></sl-sidebar-restore><ul class="astro-vszp3i2k"><li class="astro-vszp3i2k"><a href="/docs/guides/self-host-docker/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Self-host with Docker</span></a></li><li class="astro-vszp3i2k"><a href="/docs/help/security-and-privacy/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Security and privacy</span></a></li></ul></details></li><li class="astro-vszp3i2k"><details class="astro-vszp3i2k"><summary class="astro-vszp3i2k"><span class="group-label astro-vszp3i2k"><span class="large astro-vszp3i2k">Reference</span></span><svg aria-hidden="true" class="caret astro-vszp3i2k astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="6"></sl-sidebar-restore><ul class="astro-vszp3i2k"><li class="astro-vszp3i2k"><a href="/docs/reference/cli/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">CLI reference</span></a></li><li class="astro-vszp3i2k"><a href="/docs/reference/configuration/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Configuration</span></a></li><li class="astro-vszp3i2k"><a href="/docs/reference/environment-variables/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Environment variables</span></a></li><li class="astro-vszp3i2k"><a href="/docs/reference/shortcuts/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Keyboard shortcuts</span></a></li><li class="astro-vszp3i2k"><a href="/docs/reference/http-api/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">HTTP API</span></a></li></ul></details></li><li class="astro-vszp3i2k"><details class="astro-vszp3i2k"><summary class="astro-vszp3i2k"><span class="group-label astro-vszp3i2k"><span class="large astro-vszp3i2k">Help</span></span><svg aria-hidden="true" class="caret astro-vszp3i2k astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="7"></sl-sidebar-restore><ul class="astro-vszp3i2k"><li class="astro-vszp3i2k"><a href="/docs/help/troubleshooting/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Troubleshooting</span></a></li><li class="astro-vszp3i2k"><a href="/docs/help/faq/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">FAQ</span></a></li><li class="astro-vszp3i2k"><a href="/docs/help/changelog/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Changelog</span></a></li></ul></details></li></ul><script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script></sl-sidebar-state-persist><div class="md:sl-hidden"><div class="mobile-preferences sl-flex astro-67kfenav"><div class="social-icons astro-67kfenav"><a href="https://github.com/lenhatthanh20/natamux" rel="me" class="sl-flex astro-y7mukufa"><span class="sr-only astro-y7mukufa">GitHub</span><svg aria-hidden="true" class="astro-y7mukufa astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-nxv6nwzk"><span class="sr-only astro-nxv6nwzk">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-nxv6nwzk astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-nxv6nwzk"><option value="dark" class="astro-nxv6nwzk">Dark</option><option value="light" class="astro-nxv6nwzk">Light</option><option value="auto" selected class="astro-nxv6nwzk">Auto</option></select><svg aria-hidden="true" class="icon caret astro-nxv6nwzk astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script></div></div></div></sl-sidebar-pane></nav><div class="main-frame astro-2lz5n7h7"><script type="module">var e=document.getElementById(`starlight__sidebar`),t=e?.querySelector(`sl-sidebar-state-persist`),n=`sl-sidebar-state`,r=()=>{let r=[],i=t?.dataset.hash||``;try{let e=sessionStorage.getItem(n),t=JSON.parse(e||`{}`);Array.isArray(t.open)&&t.hash===i&&(r=t.open)}catch{}return{hash:i,open:r,scroll:e?.scrollTop||0}},i=e=>{try{sessionStorage.setItem(n,JSON.stringify(e))}catch{}},a=()=>i(r()),o=(e,t)=>{let n=r();n.open[t]=e,i(n)};t?.addEventListener(`click`,e=>{if(!(e.target instanceof Element))return;let t=e.target.closest(`summary`)?.closest(`details`);if(!t)return;let n=t.querySelector(`sl-sidebar-restore`),r=parseInt(n?.dataset.index||``);isNaN(r)||o(!t.open,r)}),addEventListener(`visibilitychange`,()=>{document.visibilityState===`hidden`&&a()});</script><div class="lg:sl-flex astro-mqyzlafb"><aside class="right-sidebar-container print:hidden astro-mqyzlafb"><div class="right-sidebar astro-mqyzlafb"><div class="lg:sl-hidden astro-fu4z2w3k"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-oje54ot6"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-oje54ot6"><details id="starlight__mobile-toc" class="astro-oje54ot6"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-oje54ot6"><span class="toggle sl-flex astro-oje54ot6">On this page<svg aria-hidden="true" class="caret astro-oje54ot6 astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></span><span class="display-current astro-oje54ot6"></span></summary><div class="dropdown astro-oje54ot6"><ul class="isMobile astro-tpf4pozd" style="--depth: 0;"><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#_top" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Overview</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#how-natamux-starts-an-agent" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">How Natamux starts an agent</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#how-natamux-knows-what-the-agent-does" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">How Natamux knows what the agent does</span></a><ul class="isMobile astro-tpf4pozd" style="--depth: 1;"><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#waiting-for-background-work" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Waiting for background work</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#how-a-hook-finds-its-task" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">How a hook finds its task</span></a></li></ul></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#hook-setup-for-each-agent" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Hook setup for each agent</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#folder-trust" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Folder trust</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#launch-failures" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Launch failures</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#agents-without-hooks" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Agents without hooks</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#related" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Related</span></a></li></ul></div></details></nav></mobile-starlight-toc><script type="module" src="/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.C3fM4Kra.js"></script></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-fu4z2w3k"><div class="sl-container astro-fu4z2w3k"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-tpf4pozd" style="--depth: 0;"><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#_top" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Overview</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#how-natamux-starts-an-agent" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">How Natamux starts an agent</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#how-natamux-knows-what-the-agent-does" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">How Natamux knows what the agent does</span></a><ul class="astro-tpf4pozd" style="--depth: 1;"><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#waiting-for-background-work" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Waiting for background work</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#how-a-hook-finds-its-task" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">How a hook finds its task</span></a></li></ul></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#hook-setup-for-each-agent" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Hook setup for each agent</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#folder-trust" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Folder trust</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#launch-failures" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Launch failures</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#agents-without-hooks" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Agents without hooks</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#related" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Related</span></a></li></ul></nav></starlight-toc><script type="module" src="/_astro/TableOfContents.astro_astro_type_script_index_0_lang.BpJaGz7G.js"></script></div></div></div></aside><div class="main-pane astro-mqyzlafb"><main data-pagefind-body class="astro-qo5ae45u" lang="en" dir="ltr"><div class="content-panel astro-wtsv6dx3"><div class="sl-container astro-wtsv6dx3"><h1 id="_top" class="astro-ummcq2hc">Agents and hooks</h1></div></div><div class="content-panel astro-wtsv6dx3"><div class="sl-container astro-wtsv6dx3"><div class="sl-markdown-content"><p>Natamux does not replace your coding agent. It starts the agent in a terminal that it owns, and it listens to <strong>hooks</strong>, small callbacks that the agent runs when something happens. Hooks tell Natamux when the agent works, waits for you, finishes a turn, or fails.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="how-natamux-starts-an-agent">How Natamux starts an agent</h2><a class="sl-anchor-link" href="#how-natamux-starts-an-agent"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “How Natamux starts an agent”</span></a></div>
+<p>When a stage needs an agent, Natamux:</p>
+<ol>
+<li>Writes the full command, with the first prompt and the hook settings, into a small script in its data folder. The file is named <code dir="auto">agent-launch-T-0001.sh</code>.</li>
+<li>Types a short line into the task terminal that runs the script. The settings path and the prompt do not fill your screen.</li>
+<li>Records an <code dir="auto">agent.launched</code> event and sets the <code dir="auto">agent</code> field of the task.</li>
+</ol>
+<p>On Windows, Natamux types the command itself, because PowerShell can refuse scripts.</p>
+<p>The agent starts in its interactive mode, in the worktree of the task. It stays open, so later stages send their prompts to the same agent. Stages that run side by side start another agent in another terminal.</p>
+<p>The default program for each agent:</p>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>Id</th>
+<th>Program</th>
+<th>Command variable</th>
+<th>Extra arguments variable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/docs/agents/claude-code/">Claude Code</a></td>
+<td><code dir="auto">claude-code</code></td>
+<td><code dir="auto">claude</code></td>
+<td><code dir="auto">NATAMUX_CLAUDE_COMMAND</code></td>
+<td><code dir="auto">NATAMUX_CLAUDE_ARGS</code></td>
+</tr>
+<tr>
+<td><a href="/docs/agents/codex/">Codex</a></td>
+<td><code dir="auto">codex</code></td>
+<td><code dir="auto">codex</code></td>
+<td><code dir="auto">NATAMUX_CODEX_COMMAND</code></td>
+<td><code dir="auto">NATAMUX_CODEX_ARGS</code></td>
+</tr>
+<tr>
+<td><a href="/docs/agents/gemini/">Gemini CLI</a></td>
+<td><code dir="auto">gemini</code></td>
+<td><code dir="auto">gemini</code></td>
+<td><code dir="auto">NATAMUX_GEMINI_COMMAND</code></td>
+<td><code dir="auto">NATAMUX_GEMINI_ARGS</code></td>
+</tr>
+<tr>
+<td><a href="/docs/agents/copilot/">Copilot CLI</a></td>
+<td><code dir="auto">copilot</code></td>
+<td><code dir="auto">copilot</code></td>
+<td><code dir="auto">NATAMUX_COPILOT_COMMAND</code></td>
+<td><code dir="auto">NATAMUX_COPILOT_ARGS</code></td>
+</tr>
+<tr>
+<td><a href="/docs/agents/cursor/">Cursor CLI</a></td>
+<td><code dir="auto">cursor</code></td>
+<td><code dir="auto">cursor-agent</code></td>
+<td><code dir="auto">NATAMUX_CURSOR_COMMAND</code></td>
+<td><code dir="auto">NATAMUX_CURSOR_ARGS</code></td>
+</tr>
+</tbody>
+</table>
+<p>Set these variables when you start the daemon. See <a href="/docs/reference/environment-variables/">Environment variables</a>. For any other agent, see <a href="/docs/agents/other-agents/">Other agents</a>.</p>
+<p>By default each agent starts with a flag that makes it ask for permission less often, for example <code dir="auto">--permission-mode auto</code> for Claude Code. See <a href="/docs/reference/configuration/#agents"><code dir="auto">agents</code></a> for the flag of each agent and how to turn it off.</p>
+<p>The agent that starts is, in this order: the one you choose when you start it, the <code dir="auto">agent</code> of the task, or <code dir="auto">claude-code</code>.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="how-natamux-knows-what-the-agent-does">How Natamux knows what the agent does</h2><a class="sl-anchor-link" href="#how-natamux-knows-what-the-agent-does"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “How Natamux knows what the agent does”</span></a></div>
+<p>Every agent has its own hook names. Natamux turns them into six common signals:</p>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Meaning</th>
+<th>Effect on the task</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">prompt</code></td>
+<td>A prompt was sent to the agent.</td>
+<td>A <code dir="auto">draft</code> or <code dir="auto">ready</code> task becomes <code dir="auto">running</code>. A task in <code dir="auto">needs-input</code> or <code dir="auto">review</code> becomes <code dir="auto">running</code> again.</td>
+</tr>
+<tr>
+<td><code dir="auto">activity</code></td>
+<td>The agent ran a tool.</td>
+<td>A task in <code dir="auto">needs-input</code> becomes <code dir="auto">running</code>, because a permission was answered. Otherwise the dashboard shows that the agent is alive.</td>
+</tr>
+<tr>
+<td><code dir="auto">asking</code></td>
+<td>The agent waits for you: a permission or a question.</td>
+<td>A <code dir="auto">running</code> task becomes <code dir="auto">needs-input</code>.</td>
+</tr>
+<tr>
+<td><code dir="auto">turn-ended</code></td>
+<td>The agent finished its turn.</td>
+<td>A <code dir="auto">running</code> task becomes <code dir="auto">needs-input</code>, unless the agent ran <code dir="auto">natamux done</code> first.</td>
+</tr>
+<tr>
+<td><code dir="auto">turn-paused</code></td>
+<td>The agent finished its turn, but background work will wake it again.</td>
+<td>The task stays <code dir="auto">running</code>, and its summary says what the agent waits for, such as <code dir="auto">Waiting for Bash: pnpm test</code>. It is not quiet.</td>
+</tr>
+<tr>
+<td><code dir="auto">failed</code></td>
+<td>The agent stopped with an error.</td>
+<td>A <code dir="auto">running</code> or <code dir="auto">needs-input</code> task becomes <code dir="auto">failed</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>A turn that ends without <code dir="auto">natamux done</code> means the agent stopped early, for example to ask something in plain text. The stage is done only when the agent runs <code dir="auto">natamux done</code>. Then the checks run. See <a href="/docs/concepts/stages/">Stages</a>.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="waiting-for-background-work">Waiting for background work</h3><a class="sl-anchor-link" href="#waiting-for-background-work"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Waiting for background work”</span></a></div>
+<p>Some agents start work in the background, such as a test run in a background shell, a monitor or a scheduled prompt, and end their turn while it runs. That is not a question for you. The daemon logs <code dir="auto">agent.waiting</code>, keeps the task <code dir="auto">running</code> and shows <code dir="auto">Waiting for …</code> with what the agent waits for, for example <code dir="auto">Waiting for Bash: pnpm test and 1 more</code>. The task is not quiet and is not in <strong>Needs you</strong>. When the work wakes the agent, the usual hooks go on. Claude Code reports this today. See <a href="/docs/agents/claude-code/#events-and-states">Claude Code</a>.</p>
+<p>Hooks also send a one-line summary of what the agent does now, such as <code dir="auto">Edit src/a.ts</code>. The dashboard shows it.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="how-a-hook-finds-its-task">How a hook finds its task</h3><a class="sl-anchor-link" href="#how-a-hook-finds-its-task"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “How a hook finds its task”</span></a></div>
+<ol>
+<li>The <code dir="auto">NATAMUX_TASK_ID</code> variable of the terminal, when it is set. Terminals that Natamux opens set it.</li>
+<li>Otherwise, the task whose worktree holds the working directory of the agent.</li>
+</ol>
+<p><code dir="auto">NATAMUX_TERMINAL</code> tells which stage of a group the agent works on.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="hook-setup-for-each-agent">Hook setup for each agent</h2><a class="sl-anchor-link" href="#hook-setup-for-each-agent"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Hook setup for each agent”</span></a></div>
+<p>Natamux adds the hooks for one run of the agent. It does not change your own agent settings.</p>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>How the hooks are added</th>
+<th>Where</th>
+<th>In git?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Claude Code</td>
+<td><code dir="auto">--settings &lt;file&gt;</code> on the command line. The hooks post to the daemon over HTTP.</td>
+<td><code dir="auto">claude-code-settings.json</code> in the data folder</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Codex</td>
+<td><code dir="auto">-c hooks.&lt;Event&gt;=...</code> for each hook event, and <code dir="auto">--dangerously-bypass-hook-trust</code></td>
+<td>The command line</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Gemini CLI</td>
+<td>The variable <code dir="auto">GEMINI_CLI_SYSTEM_SETTINGS_PATH</code> points to a settings file</td>
+<td><code dir="auto">gemini-settings.json</code> in the data folder</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Copilot CLI</td>
+<td>A hook file in the worktree</td>
+<td><code dir="auto">.github/hooks/natamux.json</code></td>
+<td>Kept out of git</td>
+</tr>
+<tr>
+<td>Cursor CLI</td>
+<td>A hook file in the worktree</td>
+<td><code dir="auto">.cursor/hooks.json</code></td>
+<td>Kept out of git</td>
+</tr>
+</tbody>
+</table>
+<p>Notes:</p>
+<ul>
+<li>Claude Code reads the token and the task id from its environment when it sends a hook.</li>
+<li>The other agents run <code dir="auto">natamux hook &lt;agent&gt;</code> as a command. It reads the hook JSON from stdin and sends it to the daemon. It prints nothing, and it never makes the agent fail. If the daemon is down, it exits quietly. Outside a Natamux terminal it does nothing.</li>
+<li>Codex asks you to trust every hook it has not seen, and Natamux hooks change with the daemon. <code dir="auto">--dangerously-bypass-hook-trust</code> skips that question for runs that Natamux starts.</li>
+<li>For Copilot and Cursor, Natamux writes the hook file in the worktree and adds its path to the ignore list of your repository (<code dir="auto">.git/info/exclude</code>). The file never reaches a commit.</li>
+<li>If the worktree already has a hook file at that path with any hook of your own, Natamux leaves it alone. The agent then runs without Natamux hooks. The terminal still works. Natamux updates the file only when every hook in it runs <code dir="auto">natamux hook</code>.</li>
+</ul>
+<p><code dir="auto">natamux hooks claude-code</code> prints the Claude Code settings, for use in a setup that Natamux did not start.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="folder-trust">Folder trust</h2><a class="sl-anchor-link" href="#folder-trust"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Folder trust”</span></a></div>
+<p>Most agents ask whether you trust a folder the first time they start in it. Each task has a new worktree, so Natamux marks it as trusted before it starts the agent.</p>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>What Natamux does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Claude Code</td>
+<td>Nothing. It does not ask in a Natamux worktree.</td>
+</tr>
+<tr>
+<td>Codex</td>
+<td>Passes <code dir="auto">-c 'projects={"&lt;worktree&gt;"={trust_level="trusted"}}'</code> for this run. <code dir="auto">~/.codex/config.toml</code> does not change.</td>
+</tr>
+<tr>
+<td>Gemini CLI</td>
+<td>Sets <code dir="auto">GEMINI_CLI_TRUST_WORKSPACE=true</code> for this run. It matters only when you turned on folder trust.</td>
+</tr>
+<tr>
+<td>Copilot CLI</td>
+<td>Adds the worktree to <code dir="auto">trustedFolders</code> in <code dir="auto">~/.copilot/config.json</code> (or <code dir="auto">$COPILOT_HOME</code>), unless the worktree or a parent is there. A missing or broken file is left alone.</td>
+</tr>
+<tr>
+<td>Cursor CLI</td>
+<td>Writes <code dir="auto">~/.cursor/projects/&lt;folder&gt;/.workspace-trusted</code> (or under <code dir="auto">$CURSOR_DATA_DIR</code>), the file it writes when you trust the folder. One that exists is left alone.</td>
+</tr>
+</tbody>
+</table>
+<p>If a file cannot be written, the agent starts and asks as before. Natamux does not remove these entries when it removes a task.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="launch-failures">Launch failures</h2><a class="sl-anchor-link" href="#launch-failures"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Launch failures”</span></a></div>
+<p>Natamux reads the terminal for 15 seconds after it types the launch line. If the shell prints that it cannot find the agent program (<code dir="auto">command not found</code>, <code dir="auto">not found</code>, <code dir="auto">unknown command</code> or <code dir="auto">is not recognized</code>), the task moves to <code dir="auto">failed</code> with a message such as:</p>
+<blockquote>
+<p>The agent did not start: “zsh: command not found: claude”. Install claude, or set NATAMUX_CLAUDE_COMMAND to its command, then start the agent again.</p>
+</blockquote>
+<p>Fix the problem, then start the agent again.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="agents-without-hooks">Agents without hooks</h2><a class="sl-anchor-link" href="#agents-without-hooks"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Agents without hooks”</span></a></div>
+<p>You can use any command line agent in a task terminal. Without hooks, Natamux has less to go on. Two fallbacks help:</p>
+<ul>
+<li><strong>The terminal bell.</strong> Many tools ring the bell when they wait for you. A <code dir="auto">running</code> task whose agent has no hooks that report waiting becomes <code dir="auto">needs-input</code> when the bell rings. This applies to Copilot CLI, Cursor CLI and unknown agents. Natamux ignores a bell in the first 15 seconds after the launch, because some agents ring it at start. Agents with hooks (Claude Code, Codex, Gemini CLI) do not use the bell.</li>
+<li><strong>Commands the agent can run.</strong> Tell the agent to run these in its shell:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">natamux ask "question"</code></td>
+<td>The task becomes <code dir="auto">needs-input</code>.</td>
+</tr>
+<tr>
+<td><code dir="auto">natamux done</code></td>
+<td>The stage is done, and the checks run.</td>
+</tr>
+</tbody>
+</table>
+<div class="expressive-code"><link rel="stylesheet" href="/_astro/ec.w36nc.css"><script type="module" src="/_astro/ec.0vx5m.js"></script><figure class="frame is-terminal not-content"><figcaption class="header"><span class="title"></span><span class="sr-only">Terminal window</span></figcaption><pre data-language="bash"><code><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">natamux</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">ask</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#ECC48D;--1:#984E4D">Which database should I use?</span><span style="--0:#D9F5DD;--1:#111111">"</span></div></div><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">natamux</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">done</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="natamux ask &quot;Which database should I use?&quot;natamux done"><div></div></button></div></figure></div>
+<p>Both read the task from <code dir="auto">NATAMUX_TASK_ID</code>. Use <code dir="auto">--task</code> and <code dir="auto">--stage</code> if you run them outside a task terminal or inside a group.</p>
+<p>Natamux also treats terminal output as a sign of life, so a running task is not marked quiet while the agent prints.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="related">Related</h2><a class="sl-anchor-link" href="#related"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Related”</span></a></div>
+<ul>
+<li><a href="/docs/concepts/tasks/">Tasks</a>: the states that hooks move</li>
+<li><a href="/docs/concepts/stages/">Stages</a>: <code dir="auto">natamux done</code> and the checks</li>
+<li><a href="/docs/guides/mix-agents/">Mix agents in one task</a>: an agent per stage</li>
+<li><a href="/docs/agents/claude-code/">Agents</a>: one page for each agent</li>
+</ul>
+</div><footer class="sl-flex astro-tmsbrsxh"><div class="meta sl-flex astro-tmsbrsxh"><a href="https://github.com/lenhatthanh20/natamux/edit/main/site/src/content/docs/docs/concepts/agents-and-hooks.md" class="sl-flex print:hidden astro-5asema2y"><svg aria-hidden="true" class="astro-5asema2y astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.2em;"><path d="M22 7.24a1 1 0 0 0-.29-.71l-4.24-4.24a1 1 0 0 0-1.1-.22 1 1 0 0 0-.32.22l-2.83 2.83L2.29 16.05a1 1 0 0 0-.29.71V21a1 1 0 0 0 1 1h4.24a1 1 0 0 0 .76-.29l10.87-10.93L21.71 8c.1-.1.17-.2.22-.33a1 1 0 0 0 0-.24v-.14l.07-.05ZM6.83 20H4v-2.83l9.93-9.93 2.83 2.83L6.83 20ZM18.17 8.66l-2.83-2.83 1.42-1.41 2.82 2.82-1.41 1.42Z"/></svg>Edit page</a><p>Last updated: <time datetime="2026-10-17T17:11:59.000Z">Oct 17, 2026</time></p></div><div class="pagination-links print:hidden astro-ukqbcvit" dir="ltr"><a href="/docs/concepts/workspaces/" rel="prev" class="astro-ukqbcvit"><svg aria-hidden="true" class="astro-ukqbcvit astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg><span class="astro-ukqbcvit">Previous<br class="astro-ukqbcvit"><span class="link-title astro-ukqbcvit">Workspaces</span></span></a><a href="/docs/agents/" rel="next" class="astro-ukqbcvit"><svg aria-hidden="true" class="astro-ukqbcvit astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg><span class="astro-ukqbcvit">Next<br class="astro-ukqbcvit"><span class="link-title astro-ukqbcvit">Agents</span></span></a></div></footer></div></div></main></div></div></div></div></body></html>
