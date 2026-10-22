@@ -1,0 +1,279 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-qo5ae45u"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Status icons | Natamux</title><link rel="canonical" href="https://natamux.github.io/docs/guides/status-icons/"/><link rel="sitemap" href="/sitemap-index.xml"/><link rel="shortcut icon" href="/icon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v7.3.8"/><meta name="generator" content="Starlight v0.42.6"/><meta property="og:title" content="Status icons"/><meta property="og:type" content="article"/><meta property="og:url" content="https://natamux.github.io/docs/guides/status-icons/"/><meta property="og:locale" content="en"/><meta property="og:description" content="What each status icon of the dashboard means, for task states, stage markers, busy buttons and loading, and how they move."/><meta property="og:site_name" content="Natamux"/><meta name="description" content="What each status icon of the dashboard means, for task states, stage markers, busy buttons and loading, and how they move."/><meta property="og:image" content="https://natamux.github.io/media/v2/og.jpg"/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:image" content="https://natamux.github.io/media/v2/og.jpg"/><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/_astro/print.ehPL0gv-.css" media="print"><link rel="stylesheet" href="/_astro/common.BzxNQeKY.css"><style>@layer starlight.components{svg:where(.astro-vnwekxjx){color:var(--sl-icon-color);font-size:var(--sl-icon-size,1em);width:1em;height:1em;overflow:visible}}
+</style><script type="module" src="/_astro/page.cNngjUgL.js"></script><style>.si,.si-node{--si-fg:#8d919a;--si-bg:#1d1f23;vertical-align:middle;color:var(--si-fg);justify-content:center;align-items:center;display:inline-flex}.si svg,.si-node svg{display:block;overflow:visible}[data-state=draft].si,[data-state=draft].si-node{--si-fg:#9a9ea6;--si-bg:#1d1f23}[data-state=ready].si,[data-state=ready].si-node{--si-fg:#6cc4d6;--si-bg:#13262b}[data-state=running].si,[data-state=running].si-node{--si-fg:#8fb0ff;--si-bg:#172140}[data-state=needs-input].si,[data-state=needs-input].si-node{--si-fg:#f5b54a;--si-bg:#33260f}[data-state=review].si,[data-state=review].si-node{--si-fg:#b9a4ff;--si-bg:#241d3d}[data-state=blocked].si,[data-state=blocked].si-node{--si-fg:#f08fb3;--si-bg:#331a26}[data-state=failed].si,[data-state=failed].si-node{--si-fg:#ff8577;--si-bg:#3a1a17}[data-state=done].si,[data-state=done].si-node{--si-fg:#6fd19a;--si-bg:#142a1e}[data-state=cancelled].si,[data-state=cancelled].si-node{--si-fg:#8d919a;--si-bg:#1d1f23}:root[data-theme=light] .si,:root[data-theme=light] .si-node{--si-fg:#5f6570;--si-bg:#eceef1}:root[data-theme=light] [data-state=ready].si,:root[data-theme=light] [data-state=ready].si-node{--si-fg:#0b6274;--si-bg:#e0f1f5}:root[data-theme=light] [data-state=running].si,:root[data-theme=light] [data-state=running].si-node{--si-fg:#2448b8;--si-bg:#e4ebff}:root[data-theme=light] [data-state=needs-input].si,:root[data-theme=light] [data-state=needs-input].si-node{--si-fg:#8a5300;--si-bg:#fdefd0}:root[data-theme=light] [data-state=review].si,:root[data-theme=light] [data-state=review].si-node{--si-fg:#5634b8;--si-bg:#ede7fc}:root[data-theme=light] [data-state=blocked].si,:root[data-theme=light] [data-state=blocked].si-node{--si-fg:#a33b62;--si-bg:#f9e4ec}:root[data-theme=light] [data-state=failed].si,:root[data-theme=light] [data-state=failed].si-node{--si-fg:#b0321f;--si-bg:#fbe3de}:root[data-theme=light] [data-state=done].si,:root[data-theme=light] [data-state=done].si-node{--si-fg:#1c7442;--si-bg:#e1f3e8}.si{width:16px;height:16px}.si-node{box-sizing:border-box;width:var(--node);height:var(--node);border-radius:9999px}.si-node[data-status=done]{background:var(--si-fg);color:var(--sl-color-black)}.si-node[data-status=current]{border:2px solid var(--si-fg);background:var(--si-bg);box-shadow:0 0 0 4px color-mix(in srgb, var(--si-fg) 16%, transparent)}.si-node[data-status=upcoming]{border:1.5px solid var(--sl-color-gray-3)}.si-node[data-status=skipped]{border:1.5px dashed var(--sl-color-gray-3);color:var(--sl-color-gray-3)}@keyframes si-beat{0%,50%{opacity:1;transform:scale(1)}56.25%{opacity:.35;transform:scale(.78)}62.5%{opacity:.7;transform:scale(.9)}68.75%,to{opacity:1;transform:scale(1)}}.si-beat{animation:2s linear infinite si-beat}@keyframes si-spin{to{transform:rotate(360deg)}}.si-busy{color:var(--sl-color-gray-2)}.si-spin{animation:1s steps(8,end) infinite si-spin}.si-spin .si-dots{display:none}@media (prefers-reduced-motion:reduce){.si-beat,.si-spin{animation:none}.si-spin .si-dashes{display:none}.si-spin .si-dots{display:inline}}
+</style></head><body class="astro-qo5ae45u"><a class="sl-skip-link astro-zwmawshx" href="#_top">Skip to content</a><div class="page sl-flex astro-2lz5n7h7"><header class="header astro-2lz5n7h7"><div class="header astro-juoe6wwo"><div class="title-wrapper sl-flex astro-juoe6wwo"><a href="/" class="site-title sl-flex astro-dem6id4i"><img class="astro-dem6id4i" alt="Natamux" src="/_astro/icon.NcexVJ30.svg" width="1024" height="1024"><span class="astro-dem6id4i" translate="no">Natamux</span></a></div><div class="sl-flex print:hidden astro-juoe6wwo"><site-search class="astro-juoe6wwo astro-ms3zerf7" data-translations="{&quot;placeholder&quot;:&quot;Search&quot;}"><button data-open-modal disabled aria-label="Search" aria-keyshortcuts="Control+K" class="astro-ms3zerf7"><svg aria-hidden="true" class="astro-ms3zerf7 astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg><span class="sl-hidden md:sl-block astro-ms3zerf7" aria-hidden="true">Search</span><kbd class="sl-hidden md:sl-flex astro-ms3zerf7" style="display: none;"><kbd class="astro-ms3zerf7">Ctrl</kbd><kbd class="astro-ms3zerf7">K</kbd></kbd></button><dialog style="padding:0" aria-label="Search" class="astro-ms3zerf7"><div class="dialog-frame sl-flex astro-ms3zerf7"><button data-close-modal class="sl-flex md:sl-hidden astro-ms3zerf7">Cancel</button><div class="search-container astro-ms3zerf7"><div id="starlight__search" class="astro-ms3zerf7"></div></div></div></dialog></site-search><script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script><script type="module" src="/_astro/Search.astro_astro_type_script_index_0_lang.g9hoxVJg.js"></script></div><div class="sl-hidden md:sl-flex print:hidden right-group astro-juoe6wwo"><div class="sl-flex social-icons astro-juoe6wwo"><a href="https://github.com/lenhatthanh20/natamux" rel="me" class="sl-flex astro-y7mukufa"><span class="sr-only astro-y7mukufa">GitHub</span><svg aria-hidden="true" class="astro-y7mukufa astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-nxv6nwzk"><span class="sr-only astro-nxv6nwzk">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-nxv6nwzk astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-nxv6nwzk"><option value="dark" class="astro-nxv6nwzk">Dark</option><option value="light" class="astro-nxv6nwzk">Light</option><option value="auto" selected class="astro-nxv6nwzk">Auto</option></select><svg aria-hidden="true" class="icon caret astro-nxv6nwzk astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script><script type="module">var e=`starlight-theme`,t=e=>e===`auto`||e===`dark`||e===`light`?e:`auto`,n=()=>t(typeof localStorage<`u`&&localStorage.getItem(e));function r(t){typeof localStorage<`u`&&localStorage.setItem(e,t===`light`||t===`dark`?t:``)}var i=()=>matchMedia(`(prefers-color-scheme: light)`).matches?`light`:`dark`;function a(e){StarlightThemeProvider.updatePickers(e),document.documentElement.dataset.theme=e===`auto`?i():e,r(e)}matchMedia(`(prefers-color-scheme: light)`).addEventListener(`change`,()=>{n()===`auto`&&a(`auto`)});var o=class extends HTMLElement{constructor(){super(),a(n()),this.querySelector(`select`)?.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&a(t(e.currentTarget.value))})}};customElements.define(`starlight-theme-select`,o);</script><script type="module">var e=class extends HTMLElement{constructor(){super();let e=this.querySelector(`select`);e&&(e.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=e.currentTarget.value)}),window.addEventListener(`pageshow`,t=>{if(!t.persisted)return;let n=e.querySelector(`option[selected]`)?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}};customElements.define(`starlight-lang-select`,e);</script></div></div></header><nav class="sidebar print:hidden astro-2lz5n7h7" aria-label="Main"><button popovertarget="starlight__sidebar" class="sl-menu-button sl-flex md:sl-hidden print:hidden astro-izg6nbmn"><svg aria-hidden="true" class="open-menu astro-izg6nbmn astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg><svg aria-hidden="true" class="close-menu astro-izg6nbmn astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg><span class="sr-only astro-izg6nbmn">Menu</span></button><script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script><sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-2lz5n7h7"><div class="sidebar-content sl-flex astro-2lz5n7h7"><sl-sidebar-state-persist data-hash="0lgwg75" class="astro-fvmsl5ne"><script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script><ul class="top-level astro-vszp3i2k"><li class="astro-vszp3i2k"><details open class="astro-vszp3i2k"><summary class="astro-vszp3i2k"><span class="group-label astro-vszp3i2k"><span class="large astro-vszp3i2k">Start</span></span><svg aria-hidden="true" class="caret astro-vszp3i2k astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="0"></sl-sidebar-restore><ul class="astro-vszp3i2k"><li class="astro-vszp3i2k"><a href="/docs/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">What is Natamux</span></a></li><li class="astro-vszp3i2k"><a href="/docs/getting-started/install/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Install Natamux</span></a></li><li class="astro-vszp3i2k"><a href="/docs/getting-started/quick-start/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Quick start</span></a></li></ul></details></li><li class="astro-vszp3i2k"><details open class="astro-vszp3i2k"><summary class="astro-vszp3i2k"><span class="group-label astro-vszp3i2k"><span class="large astro-vszp3i2k">Workflows</span></span><svg aria-hidden="true" class="caret astro-vszp3i2k astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="1"></sl-sidebar-restore><ul class="astro-vszp3i2k"><li class="astro-vszp3i2k"><a href="/docs/guides/workflows/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Build a workflow</span><span class="sl-badge tip small  astro-vszp3i2k astro-jq2q5o6x">New</span></a></li><li class="astro-vszp3i2k"><a href="/docs/concepts/stages/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Stages</span></a></li><li class="astro-vszp3i2k"><a href="/docs/concepts/review-loop/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">The review loop</span><span class="sl-badge tip small  astro-vszp3i2k astro-jq2q5o6x">Core</span></a></li><li class="astro-vszp3i2k"><a href="/docs/guides/mix-agents/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Mix agents in one task</span><span class="sl-badge tip small  astro-vszp3i2k astro-jq2q5o6x">New</span></a></li><li class="astro-vszp3i2k"><a href="/docs/guides/fan-out/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Fan out</span></a></li><li class="astro-vszp3i2k"><a href="/docs/guides/project-settings/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Project settings</span></a></li></ul></details></li><li class="astro-vszp3i2k"><details open class="astro-vszp3i2k"><summary class="astro-vszp3i2k"><span class="group-label astro-vszp3i2k"><span class="large astro-vszp3i2k">Use the app</span></span><svg aria-hidden="true" class="caret astro-vszp3i2k astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="2"></sl-sidebar-restore><ul class="astro-vszp3i2k"><li class="astro-vszp3i2k"><a href="/docs/guides/dashboard/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Dashboard</span></a></li><li class="astro-vszp3i2k"><a href="/docs/guides/terminal/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Terminal and Agents view</span></a></li><li class="astro-vszp3i2k"><a href="/docs/guides/changes-and-history/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Changes and history</span></a></li><li class="astro-vszp3i2k"><a href="/docs/guides/github/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">GitHub</span></a></li><li class="astro-vszp3i2k"><a href="/docs/guides/command-line/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Use the command line</span></a></li><li class="astro-vszp3i2k"><a href="/docs/guides/desktop-app/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Desktop app</span></a></li><li class="astro-vszp3i2k"><a href="/docs/guides/status-icons/" aria-current="page" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Status icons</span></a></li></ul></details></li><li class="astro-vszp3i2k"><details open class="astro-vszp3i2k"><summary class="astro-vszp3i2k"><span class="group-label astro-vszp3i2k"><span class="large astro-vszp3i2k">Concepts</span></span><svg aria-hidden="true" class="caret astro-vszp3i2k astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="3"></sl-sidebar-restore><ul class="astro-vszp3i2k"><li class="astro-vszp3i2k"><a href="/docs/concepts/tasks/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Tasks</span></a></li><li class="astro-vszp3i2k"><a href="/docs/concepts/workspaces/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Workspaces</span></a></li><li class="astro-vszp3i2k"><a href="/docs/concepts/agents-and-hooks/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Agents and hooks</span></a></li></ul></details></li><li class="astro-vszp3i2k"><details open class="astro-vszp3i2k"><summary class="astro-vszp3i2k"><span class="group-label astro-vszp3i2k"><span class="large astro-vszp3i2k">Agents</span></span><svg aria-hidden="true" class="caret astro-vszp3i2k astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="4"></sl-sidebar-restore><ul class="astro-vszp3i2k"><li class="astro-vszp3i2k"><a href="/docs/agents/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Agents</span></a></li><li class="astro-vszp3i2k"><a href="/docs/agents/claude-code/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Claude Code</span></a></li><li class="astro-vszp3i2k"><a href="/docs/agents/codex/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Codex</span></a></li><li class="astro-vszp3i2k"><a href="/docs/agents/gemini/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Gemini CLI</span></a></li><li class="astro-vszp3i2k"><a href="/docs/agents/copilot/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">GitHub Copilot CLI</span></a></li><li class="astro-vszp3i2k"><a href="/docs/agents/cursor/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Cursor CLI</span></a></li><li class="astro-vszp3i2k"><a href="/docs/agents/other-agents/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Other agents</span></a></li></ul></details></li><li class="astro-vszp3i2k"><details open class="astro-vszp3i2k"><summary class="astro-vszp3i2k"><span class="group-label astro-vszp3i2k"><span class="large astro-vszp3i2k">Self-host</span></span><svg aria-hidden="true" class="caret astro-vszp3i2k astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="5"></sl-sidebar-restore><ul class="astro-vszp3i2k"><li class="astro-vszp3i2k"><a href="/docs/guides/self-host-docker/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Self-host with Docker</span></a></li><li class="astro-vszp3i2k"><a href="/docs/help/security-and-privacy/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Security and privacy</span></a></li></ul></details></li><li class="astro-vszp3i2k"><details class="astro-vszp3i2k"><summary class="astro-vszp3i2k"><span class="group-label astro-vszp3i2k"><span class="large astro-vszp3i2k">Reference</span></span><svg aria-hidden="true" class="caret astro-vszp3i2k astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="6"></sl-sidebar-restore><ul class="astro-vszp3i2k"><li class="astro-vszp3i2k"><a href="/docs/reference/cli/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">CLI reference</span></a></li><li class="astro-vszp3i2k"><a href="/docs/reference/configuration/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Configuration</span></a></li><li class="astro-vszp3i2k"><a href="/docs/reference/environment-variables/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Environment variables</span></a></li><li class="astro-vszp3i2k"><a href="/docs/reference/shortcuts/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Keyboard shortcuts</span></a></li><li class="astro-vszp3i2k"><a href="/docs/reference/http-api/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">HTTP API</span></a></li></ul></details></li><li class="astro-vszp3i2k"><details class="astro-vszp3i2k"><summary class="astro-vszp3i2k"><span class="group-label astro-vszp3i2k"><span class="large astro-vszp3i2k">Help</span></span><svg aria-hidden="true" class="caret astro-vszp3i2k astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="7"></sl-sidebar-restore><ul class="astro-vszp3i2k"><li class="astro-vszp3i2k"><a href="/docs/help/troubleshooting/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Troubleshooting</span></a></li><li class="astro-vszp3i2k"><a href="/docs/help/faq/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">FAQ</span></a></li><li class="astro-vszp3i2k"><a href="/docs/help/changelog/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Changelog</span></a></li></ul></details></li></ul><script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script></sl-sidebar-state-persist><div class="md:sl-hidden"><div class="mobile-preferences sl-flex astro-67kfenav"><div class="social-icons astro-67kfenav"><a href="https://github.com/lenhatthanh20/natamux" rel="me" class="sl-flex astro-y7mukufa"><span class="sr-only astro-y7mukufa">GitHub</span><svg aria-hidden="true" class="astro-y7mukufa astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-nxv6nwzk"><span class="sr-only astro-nxv6nwzk">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-nxv6nwzk astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-nxv6nwzk"><option value="dark" class="astro-nxv6nwzk">Dark</option><option value="light" class="astro-nxv6nwzk">Light</option><option value="auto" selected class="astro-nxv6nwzk">Auto</option></select><svg aria-hidden="true" class="icon caret astro-nxv6nwzk astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script></div></div></div></sl-sidebar-pane></nav><div class="main-frame astro-2lz5n7h7"><script type="module">var e=document.getElementById(`starlight__sidebar`),t=e?.querySelector(`sl-sidebar-state-persist`),n=`sl-sidebar-state`,r=()=>{let r=[],i=t?.dataset.hash||``;try{let e=sessionStorage.getItem(n),t=JSON.parse(e||`{}`);Array.isArray(t.open)&&t.hash===i&&(r=t.open)}catch{}return{hash:i,open:r,scroll:e?.scrollTop||0}},i=e=>{try{sessionStorage.setItem(n,JSON.stringify(e))}catch{}},a=()=>i(r()),o=(e,t)=>{let n=r();n.open[t]=e,i(n)};t?.addEventListener(`click`,e=>{if(!(e.target instanceof Element))return;let t=e.target.closest(`summary`)?.closest(`details`);if(!t)return;let n=t.querySelector(`sl-sidebar-restore`),r=parseInt(n?.dataset.index||``);isNaN(r)||o(!t.open,r)}),addEventListener(`visibilitychange`,()=>{document.visibilityState===`hidden`&&a()});</script><div class="lg:sl-flex astro-mqyzlafb"><aside class="right-sidebar-container print:hidden astro-mqyzlafb"><div class="right-sidebar astro-mqyzlafb"><div class="lg:sl-hidden astro-fu4z2w3k"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-oje54ot6"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-oje54ot6"><details id="starlight__mobile-toc" class="astro-oje54ot6"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-oje54ot6"><span class="toggle sl-flex astro-oje54ot6">On this page<svg aria-hidden="true" class="caret astro-oje54ot6 astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></span><span class="display-current astro-oje54ot6"></span></summary><div class="dropdown astro-oje54ot6"><ul class="isMobile astro-tpf4pozd" style="--depth: 0;"><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#_top" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Overview</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#task-states" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Task states</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#stage-markers" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Stage markers</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#busy-buttons-and-loading" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Busy buttons and loading</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#motion" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Motion</span></a></li></ul></div></details></nav></mobile-starlight-toc><script type="module" src="/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.C3fM4Kra.js"></script></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-fu4z2w3k"><div class="sl-container astro-fu4z2w3k"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-tpf4pozd" style="--depth: 0;"><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#_top" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Overview</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#task-states" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Task states</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#stage-markers" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Stage markers</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#busy-buttons-and-loading" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Busy buttons and loading</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#motion" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Motion</span></a></li></ul></nav></starlight-toc><script type="module" src="/_astro/TableOfContents.astro_astro_type_script_index_0_lang.BpJaGz7G.js"></script></div></div></div></aside><div class="main-pane astro-mqyzlafb"><main data-pagefind-body class="astro-qo5ae45u" lang="en" dir="ltr"><div class="content-panel astro-wtsv6dx3"><div class="sl-container astro-wtsv6dx3"><h1 id="_top" class="astro-ummcq2hc">Status icons</h1></div></div><div class="content-panel astro-wtsv6dx3"><div class="sl-container astro-wtsv6dx3"><div class="sl-markdown-content">
+<p>Every task state has its own shape, so you can tell states apart without color. The same shapes show in the task table, the jump palette, the pane tabs, the terminal header, the sidebar and the stage markers. Only a running task moves.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="task-states">Task states</h2><a class="sl-anchor-link" href="#task-states"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Task states”</span></a></div>
+<p>The table shows the icon at 10 px in a 16 px box. The sidebar shows it at 10 px next to each task, and at 8 px next to each terminal under the open task.</p>
+<table>
+<thead>
+<tr>
+<th>Icon</th>
+<th>Sidebar terminal</th>
+<th>State</th>
+<th>Shape</th>
+<th>What it means</th>
+<th>What you do</th>
+<th>Needs you</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="si" data-state="draft" role="img" aria-label="Draft"><svg width="14" height="14" viewBox="-2 -2 14 14" aria-hidden="true"><circle cx="5" cy="5" r="4" fill="none" stroke="currentColor" stroke-width="2" pathLength="16" stroke-dasharray="3 1" stroke-dashoffset="1.5"/></svg></span></td>
+<td><span class="si" data-state="draft" role="img" aria-label="Draft"><svg width="10" height="10" viewBox="-1 -1 10 10" aria-hidden="true"><circle cx="4" cy="4" r="3.25" fill="none" stroke="currentColor" stroke-width="1.5" pathLength="16" stroke-dasharray="3 1" stroke-dashoffset="1.5"/></svg></span></td>
+<td>Draft</td>
+<td>Dashed ring</td>
+<td>Created, not started.</td>
+<td>Mark it ready, or start it.</td>
+<td>No</td>
+</tr>
+<tr>
+<td><span class="si" data-state="ready" role="img" aria-label="Ready"><svg width="14" height="14" viewBox="-2 -2 14 14" aria-hidden="true"><circle cx="5" cy="5" r="4" fill="none" stroke="currentColor" stroke-width="2"/></svg></span></td>
+<td><span class="si" data-state="ready" role="img" aria-label="Ready"><svg width="10" height="10" viewBox="-1 -1 10 10" aria-hidden="true"><circle cx="4" cy="4" r="3.25" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span></td>
+<td>Ready</td>
+<td>Ring</td>
+<td>The stage waits to start: for its agent, a workspace, or the tasks it depends on.</td>
+<td>Nothing. It starts when it can.</td>
+<td>No</td>
+</tr>
+<tr>
+<td><span class="si" data-state="running" role="img" aria-label="Running"><svg class="si-beat" width="14" height="14" viewBox="-2 -2 14 14" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg></span></td>
+<td><span class="si" data-state="running" role="img" aria-label="Running"><svg class="si-beat" width="10" height="10" viewBox="-1 -1 10 10" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg></span></td>
+<td>Running</td>
+<td>Full disk that blinks</td>
+<td>An agent or a command works on the stage.</td>
+<td>Nothing. Open the workspace to watch.</td>
+<td>No</td>
+</tr>
+<tr>
+<td><span class="si" data-state="needs-input" role="img" aria-label="Running, but quiet"><svg width="14" height="14" viewBox="-2 -2 14 14" aria-hidden="true"><circle cx="5" cy="5" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M0 5H10A5 5 0 0 1 0 5Z" fill="currentColor"/></svg></span></td>
+<td><span class="si" data-state="needs-input" role="img" aria-label="Running, but quiet"><svg width="10" height="10" viewBox="-1 -1 10 10" aria-hidden="true"><circle cx="4" cy="4" r="3.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M0 4H8A4 4 0 0 1 0 4Z" fill="currentColor"/></svg></span></td>
+<td>Running, but quiet</td>
+<td>Ring, lower half filled, in the “needs you” color</td>
+<td>The task runs, but its agent has shown no sign of life for 10 minutes.</td>
+<td>Open its terminal and check that the agent is not stuck.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><span class="si" data-state="needs-input" role="img" aria-label="Needs input"><svg width="14" height="14" viewBox="-2 -2 14 14" aria-hidden="true"><path d="M5 -0.7L10.7 5L5 10.7L-0.7 5Z" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/></svg></span></td>
+<td><span class="si" data-state="needs-input" role="img" aria-label="Needs input"><svg width="10" height="10" viewBox="-1 -1 10 10" aria-hidden="true"><path d="M4 -0.56L8.56 4L4 8.56L-0.56 4Z" fill="currentColor" stroke="currentColor" stroke-width="0.8" stroke-linejoin="round"/></svg></span></td>
+<td>Needs input</td>
+<td>Diamond</td>
+<td>The agent asked a question or a permission, or ended its turn without <code dir="auto">natamux done</code>.</td>
+<td>Click <strong>Answer</strong> to open its terminal, then reply.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><span class="si" data-state="review" role="img" aria-label="In review"><svg width="14" height="14" viewBox="-2 -2 14 14" aria-hidden="true"><rect x="0.5" y="0.5" width="9" height="9" rx="2.25" fill="currentColor"/></svg></span></td>
+<td><span class="si" data-state="review" role="img" aria-label="In review"><svg width="10" height="10" viewBox="-1 -1 10 10" aria-hidden="true"><rect x="0" y="0" width="8" height="8" rx="2" fill="currentColor"/></svg></span></td>
+<td>In review</td>
+<td>Rounded square</td>
+<td>The stage is done and waits for your approval.</td>
+<td>Read the changes, then <strong>Approve</strong> or <strong>Send back</strong>.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><span class="si" data-state="blocked" role="img" aria-label="Blocked"><svg width="14" height="14" viewBox="-2 -2 14 14" aria-hidden="true"><rect x="1" y="0" width="3" height="10" rx="0.9" fill="currentColor"/><rect x="6" y="0" width="3" height="10" rx="0.9" fill="currentColor"/></svg></span></td>
+<td><span class="si" data-state="blocked" role="img" aria-label="Blocked"><svg width="10" height="10" viewBox="-1 -1 10 10" aria-hidden="true"><rect x="0" y="0" width="3" height="8" rx="0.72" fill="currentColor"/><rect x="5" y="0" width="3" height="8" rx="0.72" fill="currentColor"/></svg></span></td>
+<td>Blocked</td>
+<td>Two bars</td>
+<td>You or Natamux paused the task.</td>
+<td>Unblock it when it can go on.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><span class="si" data-state="failed" role="img" aria-label="Failed"><svg width="14" height="14" viewBox="-2 -2 14 14" aria-hidden="true"><path d="M5 -0.8L10.8 9.6H-0.8Z" fill="currentColor" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg></span></td>
+<td><span class="si" data-state="failed" role="img" aria-label="Failed"><svg width="10" height="10" viewBox="-1 -1 10 10" aria-hidden="true"><path d="M4 -0.64L8.64 7.68H-0.64Z" fill="currentColor" stroke="currentColor" stroke-width="0.96" stroke-linejoin="round"/></svg></span></td>
+<td>Failed</td>
+<td>Triangle</td>
+<td>The agent or a stage command failed.</td>
+<td>Read the reason, fix it, then <strong>Retry</strong>.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><span class="si" data-state="done" role="img" aria-label="Done"><svg width="14" height="14" viewBox="-2 -2 14 14" aria-hidden="true"><path d="M1 5.4L4 8.2L9.2 2.2" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td>
+<td><span class="si" data-state="done" role="img" aria-label="Done"><svg width="10" height="10" viewBox="-1 -1 10 10" aria-hidden="true"><path d="M0.8 4.32L3.2 6.56L7.36 1.76" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td>
+<td>Done</td>
+<td>Check</td>
+<td>The task is finished.</td>
+<td>Nothing.</td>
+<td>No</td>
+</tr>
+<tr>
+<td><span class="si" data-state="cancelled" role="img" aria-label="Cancelled"><svg width="14" height="14" viewBox="-2 -2 14 14" aria-hidden="true"><rect x="0" y="3.5" width="10" height="3" rx="1.5" fill="currentColor"/></svg></span></td>
+<td><span class="si" data-state="cancelled" role="img" aria-label="Cancelled"><svg width="10" height="10" viewBox="-1 -1 10 10" aria-hidden="true"><rect x="0" y="3" width="8" height="2" rx="1" fill="currentColor"/></svg></span></td>
+<td>Cancelled</td>
+<td>Dash</td>
+<td>You stopped the task.</td>
+<td>Nothing.</td>
+<td>No</td>
+</tr>
+<tr>
+<td>—</td>
+<td><span class="si" data-state="unknown" role="img" aria-label="State not known yet"><svg width="10" height="10" viewBox="-1 -1 10 10" aria-hidden="true"><circle cx="4" cy="4" r="3.25" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="4" cy="4" r="1" fill="currentColor"/></svg></span></td>
+<td>State not known yet</td>
+<td>Grey ring with a dot</td>
+<td>A terminal runs an agent, but Natamux has no state for it yet: an agent you started by hand that has had no prompt yet, or one that ran when the daemon restarted.</td>
+<td>Nothing. It changes at the agent’s next event.</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>Hollow shapes have not started, a full disk is alive, and a half disk is alive but silent. A task with stages shows the state of its current stage. When stages run side by side, the task shows running while any of them runs.</p>
+<p>In the dashboard, hover an icon to see its state as text. Screen readers read the state name. See <a href="/docs/concepts/tasks/#states">Tasks</a> for how a task moves between states, and <a href="/docs/guides/dashboard/#needs-you">Needs you</a> for where waiting tasks show up.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="stage-markers">Stage markers</h2><a class="sl-anchor-link" href="#stage-markers"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Stage markers”</span></a></div>
+<p>The <strong>Progress</strong> views show one marker per stage, with the same shapes.</p>
+<table>
+<thead>
+<tr>
+<th>Marker</th>
+<th>Stage</th>
+<th>What it means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="si-node" data-status="done" data-state="done" role="img" aria-label="Ready" style="--node: 20px"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 5.4L4 8.2L9.2 2.2" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></td>
+<td>Done</td>
+<td>The stage was approved or passed its checks.</td>
+</tr>
+<tr>
+<td><span class="si-node" data-status="current" data-state="running" role="img" aria-label="Running" style="--node: 20px"><svg class="si-beat" width="10" height="10" viewBox="-1 -1 10 10" aria-hidden="true"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg></span></td>
+<td>Now, running</td>
+<td>The current stage. Its agent works; the inner disk blinks.</td>
+</tr>
+<tr>
+<td><span class="si-node" data-status="current" data-state="needs-input" role="img" aria-label="Needs input" style="--node: 20px"><svg width="10" height="10" viewBox="-1 -1 10 10" aria-hidden="true"><path d="M4 -0.56L8.56 4L4 8.56L-0.56 4Z" fill="currentColor" stroke="currentColor" stroke-width="0.8" stroke-linejoin="round"/></svg></span></td>
+<td>Now, needs input</td>
+<td>The current stage waits for your answer.</td>
+</tr>
+<tr>
+<td><span class="si-node" data-status="current" data-state="review" role="img" aria-label="In review" style="--node: 20px"><svg width="10" height="10" viewBox="-1 -1 10 10" aria-hidden="true"><rect x="0" y="0" width="8" height="8" rx="2" fill="currentColor"/></svg></span></td>
+<td>Now, in review</td>
+<td>The current stage waits for your approval.</td>
+</tr>
+<tr>
+<td><span class="si-node" data-status="current" data-state="blocked" role="img" aria-label="Blocked" style="--node: 20px"><svg width="10" height="10" viewBox="-1 -1 10 10" aria-hidden="true"><rect x="0" y="0" width="3" height="8" rx="0.72" fill="currentColor"/><rect x="5" y="0" width="3" height="8" rx="0.72" fill="currentColor"/></svg></span></td>
+<td>Now, blocked</td>
+<td>The current stage is paused.</td>
+</tr>
+<tr>
+<td><span class="si-node" data-status="current" data-state="failed" role="img" aria-label="Failed" style="--node: 20px"><svg width="10" height="10" viewBox="-1 -1 10 10" aria-hidden="true"><path d="M4 -0.64L8.64 7.68H-0.64Z" fill="currentColor" stroke="currentColor" stroke-width="0.96" stroke-linejoin="round"/></svg></span></td>
+<td>Now, failed</td>
+<td>The current stage failed.</td>
+</tr>
+<tr>
+<td><span class="si-node" data-status="upcoming" data-state="draft" role="img" aria-label="Ready" style="--node: 20px"></span></td>
+<td>Not reached</td>
+<td>The task has not got here yet.</td>
+</tr>
+<tr>
+<td><span class="si-node" data-status="skipped" data-state="draft" role="img" aria-label="Ready" style="--node: 20px"><svg width="10" height="10" viewBox="-1 -1 10 10" aria-hidden="true"><rect x="0" y="3" width="8" height="2" rx="1" fill="currentColor"/></svg></span></td>
+<td>Skipped</td>
+<td>The task went past this stage without running it.</td>
+</tr>
+</tbody>
+</table>
+<p>The current stage is a tinted disk in a ring of its state color, with the state shape inside. The line into a running stage fills toward it every 2 seconds. Lines behind the work are green, and lines ahead are dashed.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="busy-buttons-and-loading">Busy buttons and loading</h2><a class="sl-anchor-link" href="#busy-buttons-and-loading"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Busy buttons and loading”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Icon</th>
+<th>Where</th>
+<th>What it means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="si si-busy" role="img" aria-label="Busy"><svg class="si-spin" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><g class="si-dashes" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M10.89 4.08A8 8 0 0 1 13.11 4.08" opacity="1"/><path d="M16.81 5.61A8 8 0 0 1 18.39 7.19" opacity="0.3"/><path d="M19.92 10.89A8 8 0 0 1 19.92 13.11" opacity="0.3"/><path d="M18.39 16.81A8 8 0 0 1 16.81 18.39" opacity="0.3"/><path d="M13.11 19.92A8 8 0 0 1 10.89 19.92" opacity="0.36"/><path d="M7.19 18.39A8 8 0 0 1 5.61 16.81" opacity="0.48"/><path d="M4.08 13.11A8 8 0 0 1 4.08 10.89" opacity="0.64"/><path d="M5.61 7.19A8 8 0 0 1 7.19 5.61" opacity="0.82"/></g><g class="si-dots" fill="currentColor"><circle cx="5" cy="12" r="2.1"/><circle cx="12" cy="12" r="2.1"/><circle cx="19" cy="12" r="2.1"/></g></svg></span></td>
+<td>In a button, in place of its icon</td>
+<td>Natamux is doing what you clicked, such as <strong>Push</strong>. The label stays, and the button keeps its width.</td>
+</tr>
+<tr>
+<td>Grey bars that fade in and out</td>
+<td>Lists and panels</td>
+<td>The content is loading. The bars have the size of the rows that come. They show only after 200 ms.</td>
+</tr>
+</tbody>
+</table>
+<p>A row in the sidebar that starts to wait for you flashes once, so you notice it.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="motion">Motion</h2><a class="sl-anchor-link" href="#motion"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Motion”</span></a></div>
+<ul>
+<li>Only what is alive moves: a running task blinks once every 2 seconds, a busy button turns, a loading list fades in and out. Everything else is still.</li>
+<li>All running tasks blink at the same moment, so a full board stays calm.</li>
+<li>The dashboard draws moving icons 8 times a second, which keeps CPU use low. The icons are made for that rate, so they do not stutter.</li>
+<li>With <strong>Reduce motion</strong> on in your system settings, nothing moves. A running task shows its still disk, a busy button shows three dots, and loading bars do not fade.</li>
+<li>When the dashboard window is not in front, nothing moves either. It saves power on a dashboard left open on a second screen.</li>
+</ul></div><footer class="sl-flex astro-tmsbrsxh"><div class="meta sl-flex astro-tmsbrsxh"><a href="https://github.com/lenhatthanh20/natamux/edit/main/site/src/content/docs/docs/guides/status-icons.mdx" class="sl-flex print:hidden astro-5asema2y"><svg aria-hidden="true" class="astro-5asema2y astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.2em;"><path d="M22 7.24a1 1 0 0 0-.29-.71l-4.24-4.24a1 1 0 0 0-1.1-.22 1 1 0 0 0-.32.22l-2.83 2.83L2.29 16.05a1 1 0 0 0-.29.71V21a1 1 0 0 0 1 1h4.24a1 1 0 0 0 .76-.29l10.87-10.93L21.71 8c.1-.1.17-.2.22-.33a1 1 0 0 0 0-.24v-.14l.07-.05ZM6.83 20H4v-2.83l9.93-9.93 2.83 2.83L6.83 20ZM18.17 8.66l-2.83-2.83 1.42-1.41 2.82 2.82-1.41 1.42Z"/></svg>Edit page</a><p>Last updated: <time datetime="2026-10-22T19:50:43.000Z">Oct 22, 2026</time></p></div><div class="pagination-links print:hidden astro-ukqbcvit" dir="ltr"><a href="/docs/guides/desktop-app/" rel="prev" class="astro-ukqbcvit"><svg aria-hidden="true" class="astro-ukqbcvit astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg><span class="astro-ukqbcvit">Previous<br class="astro-ukqbcvit"><span class="link-title astro-ukqbcvit">Desktop app</span></span></a><a href="/docs/concepts/tasks/" rel="next" class="astro-ukqbcvit"><svg aria-hidden="true" class="astro-ukqbcvit astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg><span class="astro-ukqbcvit">Next<br class="astro-ukqbcvit"><span class="link-title astro-ukqbcvit">Tasks</span></span></a></div></footer></div></div></main></div></div></div></div></body></html>

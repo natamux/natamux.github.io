@@ -1,0 +1,1035 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-qo5ae45u"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Configuration | Natamux</title><link rel="canonical" href="https://natamux.github.io/docs/reference/configuration/"/><link rel="sitemap" href="/sitemap-index.xml"/><link rel="shortcut icon" href="/icon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v7.3.8"/><meta name="generator" content="Starlight v0.42.6"/><meta property="og:title" content="Configuration"/><meta property="og:type" content="article"/><meta property="og:url" content="https://natamux.github.io/docs/reference/configuration/"/><meta property="og:locale" content="en"/><meta property="og:description" content="Reference for the .natamux.json file that sets the stages, context sources, issue tracker and agent permission mode of a repository."/><meta property="og:site_name" content="Natamux"/><meta name="description" content="Reference for the .natamux.json file that sets the stages, context sources, issue tracker and agent permission mode of a repository."/><meta property="og:image" content="https://natamux.github.io/media/v2/og.jpg"/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:image" content="https://natamux.github.io/media/v2/og.jpg"/><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/_astro/print.ehPL0gv-.css" media="print"><link rel="stylesheet" href="/_astro/common.BzxNQeKY.css"><style>@layer starlight.components{svg:where(.astro-vnwekxjx){color:var(--sl-icon-color);font-size:var(--sl-icon-size,1em);width:1em;height:1em;overflow:visible}}
+</style><script type="module" src="/_astro/page.cNngjUgL.js"></script></head><body class="astro-qo5ae45u"><a class="sl-skip-link astro-zwmawshx" href="#_top">Skip to content</a><div class="page sl-flex astro-2lz5n7h7"><header class="header astro-2lz5n7h7"><div class="header astro-juoe6wwo"><div class="title-wrapper sl-flex astro-juoe6wwo"><a href="/" class="site-title sl-flex astro-dem6id4i"><img class="astro-dem6id4i" alt="Natamux" src="/_astro/icon.NcexVJ30.svg" width="1024" height="1024"><span class="astro-dem6id4i" translate="no">Natamux</span></a></div><div class="sl-flex print:hidden astro-juoe6wwo"><site-search class="astro-juoe6wwo astro-ms3zerf7" data-translations="{&quot;placeholder&quot;:&quot;Search&quot;}"><button data-open-modal disabled aria-label="Search" aria-keyshortcuts="Control+K" class="astro-ms3zerf7"><svg aria-hidden="true" class="astro-ms3zerf7 astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg><span class="sl-hidden md:sl-block astro-ms3zerf7" aria-hidden="true">Search</span><kbd class="sl-hidden md:sl-flex astro-ms3zerf7" style="display: none;"><kbd class="astro-ms3zerf7">Ctrl</kbd><kbd class="astro-ms3zerf7">K</kbd></kbd></button><dialog style="padding:0" aria-label="Search" class="astro-ms3zerf7"><div class="dialog-frame sl-flex astro-ms3zerf7"><button data-close-modal class="sl-flex md:sl-hidden astro-ms3zerf7">Cancel</button><div class="search-container astro-ms3zerf7"><div id="starlight__search" class="astro-ms3zerf7"></div></div></div></dialog></site-search><script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script><script type="module" src="/_astro/Search.astro_astro_type_script_index_0_lang.g9hoxVJg.js"></script></div><div class="sl-hidden md:sl-flex print:hidden right-group astro-juoe6wwo"><div class="sl-flex social-icons astro-juoe6wwo"><a href="https://github.com/lenhatthanh20/natamux" rel="me" class="sl-flex astro-y7mukufa"><span class="sr-only astro-y7mukufa">GitHub</span><svg aria-hidden="true" class="astro-y7mukufa astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-nxv6nwzk"><span class="sr-only astro-nxv6nwzk">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-nxv6nwzk astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-nxv6nwzk"><option value="dark" class="astro-nxv6nwzk">Dark</option><option value="light" class="astro-nxv6nwzk">Light</option><option value="auto" selected class="astro-nxv6nwzk">Auto</option></select><svg aria-hidden="true" class="icon caret astro-nxv6nwzk astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script><script type="module">var e=`starlight-theme`,t=e=>e===`auto`||e===`dark`||e===`light`?e:`auto`,n=()=>t(typeof localStorage<`u`&&localStorage.getItem(e));function r(t){typeof localStorage<`u`&&localStorage.setItem(e,t===`light`||t===`dark`?t:``)}var i=()=>matchMedia(`(prefers-color-scheme: light)`).matches?`light`:`dark`;function a(e){StarlightThemeProvider.updatePickers(e),document.documentElement.dataset.theme=e===`auto`?i():e,r(e)}matchMedia(`(prefers-color-scheme: light)`).addEventListener(`change`,()=>{n()===`auto`&&a(`auto`)});var o=class extends HTMLElement{constructor(){super(),a(n()),this.querySelector(`select`)?.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&a(t(e.currentTarget.value))})}};customElements.define(`starlight-theme-select`,o);</script><script type="module">var e=class extends HTMLElement{constructor(){super();let e=this.querySelector(`select`);e&&(e.addEventListener(`change`,e=>{e.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=e.currentTarget.value)}),window.addEventListener(`pageshow`,t=>{if(!t.persisted)return;let n=e.querySelector(`option[selected]`)?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}};customElements.define(`starlight-lang-select`,e);</script></div></div></header><nav class="sidebar print:hidden astro-2lz5n7h7" aria-label="Main"><button popovertarget="starlight__sidebar" class="sl-menu-button sl-flex md:sl-hidden print:hidden astro-izg6nbmn"><svg aria-hidden="true" class="open-menu astro-izg6nbmn astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg><svg aria-hidden="true" class="close-menu astro-izg6nbmn astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg><span class="sr-only astro-izg6nbmn">Menu</span></button><script type="module">var e=class extends HTMLElement{constructor(){super();let e=matchMedia(`(min-width: 50em)`),t=()=>{this.popover=e.matches?null:`auto`};t(),e.addEventListener(`change`,()=>t()),this.addEventListener(`toggle`,({newState:e})=>this.trapFocus(e===`open`))}trapFocus(e){document.querySelectorAll(`.main-frame, .sl-skip-link`).forEach(t=>{t.toggleAttribute(`inert`,e)})}};customElements.define(`sl-sidebar-pane`,e);</script><sl-sidebar-pane popover id="starlight__sidebar" class="sidebar-pane astro-2lz5n7h7"><div class="sidebar-content sl-flex astro-2lz5n7h7"><sl-sidebar-state-persist data-hash="0lgwg75" class="astro-fvmsl5ne"><script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script><ul class="top-level astro-vszp3i2k"><li class="astro-vszp3i2k"><details open class="astro-vszp3i2k"><summary class="astro-vszp3i2k"><span class="group-label astro-vszp3i2k"><span class="large astro-vszp3i2k">Start</span></span><svg aria-hidden="true" class="caret astro-vszp3i2k astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="0"></sl-sidebar-restore><ul class="astro-vszp3i2k"><li class="astro-vszp3i2k"><a href="/docs/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">What is Natamux</span></a></li><li class="astro-vszp3i2k"><a href="/docs/getting-started/install/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Install Natamux</span></a></li><li class="astro-vszp3i2k"><a href="/docs/getting-started/quick-start/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Quick start</span></a></li></ul></details></li><li class="astro-vszp3i2k"><details open class="astro-vszp3i2k"><summary class="astro-vszp3i2k"><span class="group-label astro-vszp3i2k"><span class="large astro-vszp3i2k">Workflows</span></span><svg aria-hidden="true" class="caret astro-vszp3i2k astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="1"></sl-sidebar-restore><ul class="astro-vszp3i2k"><li class="astro-vszp3i2k"><a href="/docs/guides/workflows/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Build a workflow</span><span class="sl-badge tip small  astro-vszp3i2k astro-jq2q5o6x">New</span></a></li><li class="astro-vszp3i2k"><a href="/docs/concepts/stages/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Stages</span></a></li><li class="astro-vszp3i2k"><a href="/docs/concepts/review-loop/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">The review loop</span><span class="sl-badge tip small  astro-vszp3i2k astro-jq2q5o6x">Core</span></a></li><li class="astro-vszp3i2k"><a href="/docs/guides/mix-agents/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Mix agents in one task</span><span class="sl-badge tip small  astro-vszp3i2k astro-jq2q5o6x">New</span></a></li><li class="astro-vszp3i2k"><a href="/docs/guides/fan-out/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Fan out</span></a></li><li class="astro-vszp3i2k"><a href="/docs/guides/project-settings/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Project settings</span></a></li></ul></details></li><li class="astro-vszp3i2k"><details open class="astro-vszp3i2k"><summary class="astro-vszp3i2k"><span class="group-label astro-vszp3i2k"><span class="large astro-vszp3i2k">Use the app</span></span><svg aria-hidden="true" class="caret astro-vszp3i2k astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="2"></sl-sidebar-restore><ul class="astro-vszp3i2k"><li class="astro-vszp3i2k"><a href="/docs/guides/dashboard/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Dashboard</span></a></li><li class="astro-vszp3i2k"><a href="/docs/guides/terminal/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Terminal and Agents view</span></a></li><li class="astro-vszp3i2k"><a href="/docs/guides/changes-and-history/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Changes and history</span></a></li><li class="astro-vszp3i2k"><a href="/docs/guides/github/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">GitHub</span></a></li><li class="astro-vszp3i2k"><a href="/docs/guides/command-line/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Use the command line</span></a></li><li class="astro-vszp3i2k"><a href="/docs/guides/desktop-app/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Desktop app</span></a></li><li class="astro-vszp3i2k"><a href="/docs/guides/status-icons/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Status icons</span></a></li></ul></details></li><li class="astro-vszp3i2k"><details open class="astro-vszp3i2k"><summary class="astro-vszp3i2k"><span class="group-label astro-vszp3i2k"><span class="large astro-vszp3i2k">Concepts</span></span><svg aria-hidden="true" class="caret astro-vszp3i2k astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="3"></sl-sidebar-restore><ul class="astro-vszp3i2k"><li class="astro-vszp3i2k"><a href="/docs/concepts/tasks/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Tasks</span></a></li><li class="astro-vszp3i2k"><a href="/docs/concepts/workspaces/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Workspaces</span></a></li><li class="astro-vszp3i2k"><a href="/docs/concepts/agents-and-hooks/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Agents and hooks</span></a></li></ul></details></li><li class="astro-vszp3i2k"><details open class="astro-vszp3i2k"><summary class="astro-vszp3i2k"><span class="group-label astro-vszp3i2k"><span class="large astro-vszp3i2k">Agents</span></span><svg aria-hidden="true" class="caret astro-vszp3i2k astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="4"></sl-sidebar-restore><ul class="astro-vszp3i2k"><li class="astro-vszp3i2k"><a href="/docs/agents/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Agents</span></a></li><li class="astro-vszp3i2k"><a href="/docs/agents/claude-code/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Claude Code</span></a></li><li class="astro-vszp3i2k"><a href="/docs/agents/codex/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Codex</span></a></li><li class="astro-vszp3i2k"><a href="/docs/agents/gemini/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Gemini CLI</span></a></li><li class="astro-vszp3i2k"><a href="/docs/agents/copilot/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">GitHub Copilot CLI</span></a></li><li class="astro-vszp3i2k"><a href="/docs/agents/cursor/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Cursor CLI</span></a></li><li class="astro-vszp3i2k"><a href="/docs/agents/other-agents/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Other agents</span></a></li></ul></details></li><li class="astro-vszp3i2k"><details open class="astro-vszp3i2k"><summary class="astro-vszp3i2k"><span class="group-label astro-vszp3i2k"><span class="large astro-vszp3i2k">Self-host</span></span><svg aria-hidden="true" class="caret astro-vszp3i2k astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="5"></sl-sidebar-restore><ul class="astro-vszp3i2k"><li class="astro-vszp3i2k"><a href="/docs/guides/self-host-docker/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Self-host with Docker</span></a></li><li class="astro-vszp3i2k"><a href="/docs/help/security-and-privacy/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Security and privacy</span></a></li></ul></details></li><li class="astro-vszp3i2k"><details open class="astro-vszp3i2k"><summary class="astro-vszp3i2k"><span class="group-label astro-vszp3i2k"><span class="large astro-vszp3i2k">Reference</span></span><svg aria-hidden="true" class="caret astro-vszp3i2k astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="6"></sl-sidebar-restore><ul class="astro-vszp3i2k"><li class="astro-vszp3i2k"><a href="/docs/reference/cli/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">CLI reference</span></a></li><li class="astro-vszp3i2k"><a href="/docs/reference/configuration/" aria-current="page" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Configuration</span></a></li><li class="astro-vszp3i2k"><a href="/docs/reference/environment-variables/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Environment variables</span></a></li><li class="astro-vszp3i2k"><a href="/docs/reference/shortcuts/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Keyboard shortcuts</span></a></li><li class="astro-vszp3i2k"><a href="/docs/reference/http-api/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">HTTP API</span></a></li></ul></details></li><li class="astro-vszp3i2k"><details class="astro-vszp3i2k"><summary class="astro-vszp3i2k"><span class="group-label astro-vszp3i2k"><span class="large astro-vszp3i2k">Help</span></span><svg aria-hidden="true" class="caret astro-vszp3i2k astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></summary><sl-sidebar-restore data-index="7"></sl-sidebar-restore><ul class="astro-vszp3i2k"><li class="astro-vszp3i2k"><a href="/docs/help/troubleshooting/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Troubleshooting</span></a></li><li class="astro-vszp3i2k"><a href="/docs/help/faq/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">FAQ</span></a></li><li class="astro-vszp3i2k"><a href="/docs/help/changelog/" class="astro-vszp3i2k"><span class="astro-vszp3i2k">Changelog</span></a></li></ul></details></li></ul><script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script></sl-sidebar-state-persist><div class="md:sl-hidden"><div class="mobile-preferences sl-flex astro-67kfenav"><div class="social-icons astro-67kfenav"><a href="https://github.com/lenhatthanh20/natamux" rel="me" class="sl-flex astro-y7mukufa"><span class="sr-only astro-y7mukufa">GitHub</span><svg aria-hidden="true" class="astro-y7mukufa astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a></div><starlight-theme-select><label style="--sl-select-width: 6.25em" class="astro-nxv6nwzk"><span class="sr-only astro-nxv6nwzk">Select theme</span><svg aria-hidden="true" class="icon label-icon astro-nxv6nwzk astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg><select autocomplete="off" class="astro-nxv6nwzk"><option value="dark" class="astro-nxv6nwzk">Dark</option><option value="light" class="astro-nxv6nwzk">Light</option><option value="auto" selected class="astro-nxv6nwzk">Auto</option></select><svg aria-hidden="true" class="icon caret astro-nxv6nwzk astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg></label></starlight-theme-select><script>
+	StarlightThemeProvider.updatePickers();
+</script></div></div></div></sl-sidebar-pane></nav><div class="main-frame astro-2lz5n7h7"><script type="module">var e=document.getElementById(`starlight__sidebar`),t=e?.querySelector(`sl-sidebar-state-persist`),n=`sl-sidebar-state`,r=()=>{let r=[],i=t?.dataset.hash||``;try{let e=sessionStorage.getItem(n),t=JSON.parse(e||`{}`);Array.isArray(t.open)&&t.hash===i&&(r=t.open)}catch{}return{hash:i,open:r,scroll:e?.scrollTop||0}},i=e=>{try{sessionStorage.setItem(n,JSON.stringify(e))}catch{}},a=()=>i(r()),o=(e,t)=>{let n=r();n.open[t]=e,i(n)};t?.addEventListener(`click`,e=>{if(!(e.target instanceof Element))return;let t=e.target.closest(`summary`)?.closest(`details`);if(!t)return;let n=t.querySelector(`sl-sidebar-restore`),r=parseInt(n?.dataset.index||``);isNaN(r)||o(!t.open,r)}),addEventListener(`visibilitychange`,()=>{document.visibilityState===`hidden`&&a()});</script><div class="lg:sl-flex astro-mqyzlafb"><aside class="right-sidebar-container print:hidden astro-mqyzlafb"><div class="right-sidebar astro-mqyzlafb"><div class="lg:sl-hidden astro-fu4z2w3k"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-oje54ot6"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-oje54ot6"><details id="starlight__mobile-toc" class="astro-oje54ot6"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-oje54ot6"><span class="toggle sl-flex astro-oje54ot6">On this page<svg aria-hidden="true" class="caret astro-oje54ot6 astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></span><span class="display-current astro-oje54ot6"></span></summary><div class="dropdown astro-oje54ot6"><ul class="isMobile astro-tpf4pozd" style="--depth: 0;"><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#_top" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Overview</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#how-the-file-is-loaded" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">How the file is loaded</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#top-level-fields" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Top-level fields</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#stages" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">stages</span></a><ul class="isMobile astro-tpf4pozd" style="--depth: 1;"><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#stage" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Stage</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#group" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Group</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#branch" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Branch</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#path" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Path</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#condition" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Condition</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#rules-for-a-branch" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Rules for a branch</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#rules-for-the-pipeline" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Rules for the pipeline</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#skill-placeholder" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Skill placeholder</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#stage-catalog" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Stage catalog</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#default-pipeline" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Default pipeline</span></a></li></ul></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#limits" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Limits</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#context" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">context</span></a><ul class="isMobile astro-tpf4pozd" style="--depth: 1;"><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#source-types" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Source types</span></a></li></ul></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#tracker" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">tracker</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#agents" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">agents</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#examples" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Examples</span></a><ul class="isMobile astro-tpf4pozd" style="--depth: 1;"><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#drop-the-planning-stages" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Drop the planning stages</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#run-a-test-command" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Run a test command</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#check-a-command-after-an-agent-stage" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Check a command after an agent stage</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#run-stages-side-by-side" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Run stages side by side</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#add-a-manual-sign-off" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Add a manual sign-off</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#review-with-another-agent" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Review with another agent</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#turn-off-issues" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Turn off issues</span></a></li></ul></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#related" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Related</span></a></li></ul></div></details></nav></mobile-starlight-toc><script type="module" src="/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.C3fM4Kra.js"></script></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-fu4z2w3k"><div class="sl-container astro-fu4z2w3k"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-tpf4pozd" style="--depth: 0;"><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#_top" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Overview</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#how-the-file-is-loaded" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">How the file is loaded</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#top-level-fields" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Top-level fields</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#stages" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">stages</span></a><ul class="astro-tpf4pozd" style="--depth: 1;"><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#stage" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Stage</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#group" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Group</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#branch" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Branch</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#path" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Path</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#condition" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Condition</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#rules-for-a-branch" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Rules for a branch</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#rules-for-the-pipeline" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Rules for the pipeline</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#skill-placeholder" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Skill placeholder</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#stage-catalog" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Stage catalog</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#default-pipeline" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Default pipeline</span></a></li></ul></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#limits" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Limits</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#context" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">context</span></a><ul class="astro-tpf4pozd" style="--depth: 1;"><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#source-types" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Source types</span></a></li></ul></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#tracker" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">tracker</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#agents" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">agents</span></a></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#examples" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Examples</span></a><ul class="astro-tpf4pozd" style="--depth: 1;"><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#drop-the-planning-stages" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Drop the planning stages</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#run-a-test-command" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Run a test command</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#check-a-command-after-an-agent-stage" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Check a command after an agent stage</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#run-stages-side-by-side" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Run stages side by side</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#add-a-manual-sign-off" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Add a manual sign-off</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#review-with-another-agent" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Review with another agent</span></a></li><li style="--depth: 1;" class="astro-tpf4pozd"><a href="#turn-off-issues" style="--depth: 1;" class="astro-tpf4pozd"><span style="--depth: 1;" class="astro-tpf4pozd">Turn off issues</span></a></li></ul></li><li style="--depth: 0;" class="astro-tpf4pozd"><a href="#related" style="--depth: 0;" class="astro-tpf4pozd"><span style="--depth: 0;" class="astro-tpf4pozd">Related</span></a></li></ul></nav></starlight-toc><script type="module" src="/_astro/TableOfContents.astro_astro_type_script_index_0_lang.BpJaGz7G.js"></script></div></div></div></aside><div class="main-pane astro-mqyzlafb"><main data-pagefind-body class="astro-qo5ae45u" lang="en" dir="ltr"><div class="content-panel astro-wtsv6dx3"><div class="sl-container astro-wtsv6dx3"><h1 id="_top" class="astro-ummcq2hc">Configuration</h1></div></div><div class="content-panel astro-wtsv6dx3"><div class="sl-container astro-wtsv6dx3"><div class="sl-markdown-content"><p>Natamux reads project settings from a file named <code dir="auto">.natamux.json</code> at the root of a repository. The file sets the <a href="/docs/concepts/stages/">stages</a> that tasks go through, where task context comes from, and how Natamux works with your issue tracker.</p>
+<p>Every field is optional. A repository without the file uses the defaults on this page. To set daemon options such as the port and data folder, see <a href="/docs/reference/environment-variables/">Environment variables</a>.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="how-the-file-is-loaded">How the file is loaded</h2><a class="sl-anchor-link" href="#how-the-file-is-loaded"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “How the file is loaded”</span></a></div>
+<ul>
+<li>The file is read again when it changes. An edit counts at once.</li>
+<li>A new task takes the stages from the file when you create it. Tasks on their way keep their list of stages. Changes to the name, gate and checks of a stage apply to them.</li>
+<li>If the file is not valid JSON, or a field is wrong, Natamux uses the defaults and shows the problem. Fix the file to use your settings.</li>
+<li>Unknown fields are ignored.</li>
+<li>Each repository that Natamux manages has its own file.</li>
+</ul>
+<p>To edit the file in the dashboard, open <strong>Settings</strong> in the menu of the project. The <strong>Stages</strong> tab edits the stages without JSON, the <strong>Issues</strong> tab sets when an issue opens, and the <strong>JSON</strong> tab edits the whole file. <strong>Save</strong> writes <code dir="auto">.natamux.json</code> in the repository. Commit it to share it with your team. <strong>Reset to default</strong> puts the default pipeline in the editor. See <a href="/docs/guides/project-settings/">Project settings</a>.</p>
+<ul>
+<li>The editor changes only <code dir="auto">stages</code>. Other fields and keys it does not know stay in the file as they are.</li>
+<li>When the stages equal the default pipeline, the editor leaves <code dir="auto">stages</code> out of the file, so the project follows later changes of the default.</li>
+</ul>
+<div class="sl-heading-wrapper level-h2"><h2 id="top-level-fields">Top-level fields</h2><a class="sl-anchor-link" href="#top-level-fields"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Top-level fields”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">stages</code></td>
+<td>array of stages, groups and branches</td>
+<td>The <a href="#default-pipeline">default pipeline</a></td>
+<td>The steps of every task, in order. At least one.</td>
+</tr>
+<tr>
+<td><code dir="auto">context</code></td>
+<td>object</td>
+<td><code dir="auto">{ "sources": [{ "type": "manual" }, { "type": "github-issue" }] }</code></td>
+<td>Where task context can come from.</td>
+</tr>
+<tr>
+<td><code dir="auto">tracker</code></td>
+<td>object</td>
+<td><code dir="auto">{ "type": "github", "createIssue": "manual", "linkInPr": true }</code></td>
+<td>The issue tracker.</td>
+</tr>
+<tr>
+<td><code dir="auto">agents</code></td>
+<td>object</td>
+<td><code dir="auto">{ "permissionMode": "auto" }</code></td>
+<td>How the agents that Natamux starts ask for permission.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h2"><h2 id="stages"><code dir="auto">stages</code></h2><a class="sl-anchor-link" href="#stages"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “stages”</span></a></div>
+<p>An array of <strong>steps</strong>. A step is a stage, a group of stages that run side by side, or a branch that splits the pipeline into paths.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="stage">Stage</h3><a class="sl-anchor-link" href="#stage"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Stage”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">id</code></td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td>Lower case words joined by <code dir="auto">-</code>, such as <code dir="auto">test-spec</code>. Up to 40 characters. Unique in the file.</td>
+</tr>
+<tr>
+<td><code dir="auto">kind</code></td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td><code dir="auto">context</code>, <code dir="auto">agent</code>, <code dir="auto">review</code>, <code dir="auto">testing</code>, <code dir="auto">release</code> or <code dir="auto">manual</code>.</td>
+</tr>
+<tr>
+<td><code dir="auto">gate</code></td>
+<td>string</td>
+<td>yes</td>
+<td></td>
+<td><code dir="auto">auto</code> or <code dir="auto">manual</code>.</td>
+</tr>
+<tr>
+<td><code dir="auto">name</code></td>
+<td>string</td>
+<td>no</td>
+<td>The <code dir="auto">id</code> with spaces and a capital, such as <code dir="auto">Test spec</code></td>
+<td>Display name, 1 to 60 characters.</td>
+</tr>
+<tr>
+<td><code dir="auto">prompt</code></td>
+<td>string</td>
+<td>no</td>
+<td>A built-in prompt for the default ids, or a generic one</td>
+<td>The prompt for the agent.</td>
+</tr>
+<tr>
+<td><code dir="auto">output</code></td>
+<td>string</td>
+<td>no</td>
+<td>none</td>
+<td>A Markdown file the stage must write, such as <code dir="auto">spec.md</code>.</td>
+</tr>
+<tr>
+<td><code dir="auto">sections</code></td>
+<td>array of strings</td>
+<td>no</td>
+<td>none</td>
+<td>Headings the output file must have.</td>
+</tr>
+<tr>
+<td><code dir="auto">requireCommit</code></td>
+<td>boolean</td>
+<td>no</td>
+<td><code dir="auto">false</code></td>
+<td>Fail the check when there is no new commit.</td>
+</tr>
+<tr>
+<td><code dir="auto">requireClean</code></td>
+<td>boolean</td>
+<td>no</td>
+<td><code dir="auto">false</code></td>
+<td>Fail the check when a file is not committed.</td>
+</tr>
+<tr>
+<td><code dir="auto">check</code></td>
+<td>string</td>
+<td>no</td>
+<td>none</td>
+<td>A shell command that must exit with 0.</td>
+</tr>
+<tr>
+<td><code dir="auto">command</code></td>
+<td>string</td>
+<td>no</td>
+<td>none</td>
+<td>For <code dir="auto">testing</code>: the command to run. Its exit code decides the stage.</td>
+</tr>
+<tr>
+<td><code dir="auto">doneWhen</code></td>
+<td>string</td>
+<td>no</td>
+<td>A sentence made from the checks</td>
+<td>Text shown in the progress view before the stage starts.</td>
+</tr>
+<tr>
+<td><code dir="auto">enabled</code></td>
+<td>boolean</td>
+<td>no</td>
+<td><code dir="auto">true</code></td>
+<td><code dir="auto">false</code> turns the stage off: it stays in the file, but new tasks do not get it.</td>
+</tr>
+<tr>
+<td><code dir="auto">workflow</code></td>
+<td>boolean</td>
+<td>no</td>
+<td><code dir="auto">true</code> for <code dir="auto">plan</code> and <code dir="auto">implement</code> of the catalog, else <code dir="auto">false</code></td>
+<td>Tasks get a <strong>Run with a workflow</strong> checkbox on this stage. Only for <code dir="auto">agent</code> stages. See <a href="/docs/concepts/stages/#run-a-stage-as-a-workflow">Run a stage as a workflow</a>.</td>
+</tr>
+<tr>
+<td><code dir="auto">agent</code></td>
+<td>string</td>
+<td>no</td>
+<td>The task’s agent</td>
+<td>The agent this stage starts: <code dir="auto">claude-code</code>, <code dir="auto">codex</code>, <code dir="auto">gemini</code>, <code dir="auto">copilot</code> or <code dir="auto">cursor</code>. Only on a stage that starts its own agent: one that runs beside the stage in Terminal 1, such as Test spec, one with <code dir="auto">"ownShell": true</code>, such as Review, or an <code dir="auto">agent</code> or <code dir="auto">testing</code> stage of your own.</td>
+</tr>
+<tr>
+<td><code dir="auto">ci</code></td>
+<td>boolean</td>
+<td>no</td>
+<td><code dir="auto">true</code> for <code dir="auto">implement</code> and <code dir="auto">testing</code> of the catalog, else <code dir="auto">false</code></td>
+<td>Tasks get a <strong>Check on CI</strong> checkbox on this stage. Only for a testing stage or an agent stage without an <code dir="auto">output</code>. See <a href="/docs/concepts/stages/#check-a-stage-on-ci">Check a stage on CI</a>.</td>
+</tr>
+<tr>
+<td><code dir="auto">ownShell</code></td>
+<td>boolean</td>
+<td>no</td>
+<td><code dir="auto">true</code> for the catalog’s report stages (Review, Test spec, Security review, Performance check, Accessibility check)</td>
+<td>The stage runs in its own terminal (Terminal 5) with a new session, or in a terminal of its own from Terminal 6 when it has its own <code dir="auto">agent</code> or <code dir="auto">args</code>. The stage then does not use Terminal 1, so the task’s agent starts there only at the next stage that does. Only for an <code dir="auto">agent</code> stage with an <code dir="auto">output</code>.</td>
+</tr>
+<tr>
+<td><code dir="auto">endShell</code></td>
+<td>boolean</td>
+<td>no</td>
+<td><code dir="auto">false</code></td>
+<td>When the stage is done or sends the task back, end its agent or command and close its terminal. Without it, the terminal stays open until the task ends or you close it. Only for <code dir="auto">context</code>, <code dir="auto">agent</code> and <code dir="auto">testing</code> stages. Ignored on a stage in Terminal 1, which is never closed. See <a href="/docs/concepts/stages/#end-a-stages-terminal">End a stage’s terminal</a>.</td>
+</tr>
+<tr>
+<td><code dir="auto">args</code></td>
+<td>string</td>
+<td>no</td>
+<td>none</td>
+<td>Words added to the command line of this stage’s agent, after <code dir="auto">NATAMUX_&lt;AGENT&gt;_ARGS</code>, such as <code dir="auto">--model sonnet</code>. Same rule as <code dir="auto">agent</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>Details:</p>
+<ul>
+<li><code dir="auto">kind</code> and <code dir="auto">gate</code> are explained in <a href="/docs/concepts/stages/">Stages</a>.</li>
+<li><code dir="auto">output</code> is a file name in <code dir="auto">.natamux-task/</code>. It has letters, digits, <code dir="auto">_</code>, <code dir="auto">-</code> and <code dir="auto">.</code>, and ends in <code dir="auto">.md</code>. It has no folder.</li>
+<li><code dir="auto">prompt</code> can use <code dir="auto">{title}</code>, <code dir="auto">{description}</code>, <code dir="auto">{dir}</code>, <code dir="auto">{ref}</code> and <code dir="auto">{skill:&lt;name&gt;}</code>. <code dir="auto">{dir}</code> is the stage file folder (<code dir="auto">.natamux-task</code>). <code dir="auto">{ref}</code> is the context reference of the task. Natamux adds the line <code dir="auto">When you are done, run natamux done, unless the steps above say not to.</code> after your text, so your prompt can say when the agent must not run it, for example after it sends the task back.</li>
+<li><code dir="auto">{skill:&lt;name&gt;}</code> names a skill. A plugin skill is <code dir="auto">&lt;plugin&gt;:&lt;skill&gt;</code>. Natamux fills it when the stage starts, for the agent of the task. See <a href="#skill-placeholder">Skill placeholder</a>.</li>
+<li>A stage with <code dir="auto">"enabled": false</code> keeps its settings in the file. The pipeline rules below count only stages that are on.</li>
+<li><code dir="auto">check</code> runs in the root of the worktree. It gets 10 minutes. It runs with <code dir="auto">sh -c</code>, or <code dir="auto">cmd.exe</code> on Windows.</li>
+<li><code dir="auto">command</code> only has an effect on a <code dir="auto">testing</code> stage. Without it, an agent does the testing.</li>
+<li><code dir="auto">agent</code> and <code dir="auto">args</code> are for an <code dir="auto">agent</code> stage that starts its own agent: a stage in a group that does not keep Terminal 1, or a stage with <code dir="auto">"ownShell": true</code>, such as Review. In a group, that is every agent stage but the one that changes code (the first agent stage without an <code dir="auto">output</code>). Such a stage starts its own agent in its own terminal, so it can use another agent or model without touching the session in Terminal 1. A launch for such a stage does not change the task’s agent.</li>
+<li>An <code dir="auto">agent</code> or <code dir="auto">testing</code> stage of your own (an id that is not in the <a href="#stage-catalog">catalog</a>) can have <code dir="auto">agent</code> and <code dir="auto">args</code> too, also where it would run in Terminal 1.</li>
+<li>A stage with its own <code dir="auto">agent</code> or <code dir="auto">args</code> runs in a terminal of its own: Terminal 6 plus the place of the stage among all stages of the task, counted from 0, so no two stages share one. Natamux closes no agent while the task runs, unless its stage has <code dir="auto">"endShell": true</code>.</li>
+<li>A stage keeps the terminal it started in until it starts again. A change to these settings applies at the stage’s next start, never under an agent that runs. See <a href="/docs/concepts/stages/#choose-a-model">Choose a model</a>.</li>
+<li><code dir="auto">workflow</code> only offers the choice. Each task turns it on for itself; it is off by default. A stage of your own does not take the default, so write <code dir="auto">"workflow": true</code> on it to offer the choice.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="group">Group</h3><a class="sl-anchor-link" href="#group"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Group”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">id</code></td>
+<td>string</td>
+<td>yes</td>
+<td>Same rules as a stage id. Unique, also against stage ids inside groups.</td>
+</tr>
+<tr>
+<td><code dir="auto">name</code></td>
+<td>string</td>
+<td>no</td>
+<td>Display name, 1 to 60 characters.</td>
+</tr>
+<tr>
+<td><code dir="auto">parallel</code></td>
+<td>array of stages</td>
+<td>yes</td>
+<td>2 to 4 stages that run at the same time. Only kinds <code dir="auto">agent</code> and <code dir="auto">manual</code>.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="branch">Branch</h3><a class="sl-anchor-link" href="#branch"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Branch”</span></a></div>
+<p>A branch splits the pipeline into 2 to 4 paths. A task takes the first path whose condition holds. See <a href="/docs/concepts/stages/#paths-with-a-condition">Paths with a condition</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">id</code></td>
+<td>string</td>
+<td>yes</td>
+<td>Same rules as a stage id. Unique, also against stage ids and path ids.</td>
+</tr>
+<tr>
+<td><code dir="auto">name</code></td>
+<td>string</td>
+<td>no</td>
+<td>Display name, 1 to 60 characters.</td>
+</tr>
+<tr>
+<td><code dir="auto">paths</code></td>
+<td>array of paths</td>
+<td>yes</td>
+<td>2 to 4 paths, checked in order.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="path">Path</h3><a class="sl-anchor-link" href="#path"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Path”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">id</code></td>
+<td>string</td>
+<td>yes</td>
+<td>Same rules as a stage id. Unique in the file.</td>
+</tr>
+<tr>
+<td><code dir="auto">name</code></td>
+<td>string</td>
+<td>no</td>
+<td>Display name, 1 to 60 characters.</td>
+</tr>
+<tr>
+<td><code dir="auto">when</code></td>
+<td>condition</td>
+<td>no</td>
+<td>What must hold to take the path. Leave it out for the <strong>Otherwise</strong> path.</td>
+</tr>
+<tr>
+<td><code dir="auto">not</code></td>
+<td>boolean</td>
+<td>no</td>
+<td><code dir="auto">true</code> takes the path when the condition does not hold.</td>
+</tr>
+<tr>
+<td><code dir="auto">stages</code></td>
+<td>array of stages</td>
+<td>yes</td>
+<td>At least one. The stages run one after another. A path holds stages only: no group and no branch.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h3"><h3 id="condition">Condition</h3><a class="sl-anchor-link" href="#condition"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Condition”</span></a></div>
+<p>The <code dir="auto">type</code> of <code dir="auto">when</code> picks the fields.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Field</th>
+<th>Required</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">output</code></td>
+<td><code dir="auto">file</code></td>
+<td>yes</td>
+<td>A Markdown file name in the task’s stage folder, such as <code dir="auto">plan.md</code>.</td>
+</tr>
+<tr>
+<td><code dir="auto">output</code></td>
+<td><code dir="auto">section</code></td>
+<td>no</td>
+<td>A heading. Only the lines under it count.</td>
+</tr>
+<tr>
+<td><code dir="auto">output</code></td>
+<td><code dir="auto">contains</code></td>
+<td>yes</td>
+<td>The text to look for. The match ignores case.</td>
+</tr>
+<tr>
+<td><code dir="auto">command</code></td>
+<td><code dir="auto">run</code></td>
+<td>yes</td>
+<td>A shell command. The condition holds when it exits with 0.</td>
+</tr>
+</tbody>
+</table>
+<div class="expressive-code"><link rel="stylesheet" href="/_astro/ec.w36nc.css"><script type="module" src="/_astro/ec.0vx5m.js"></script><figure class="frame has-title not-content"><figcaption class="header"><span class="title">.natamux.json</span></figcaption><pre data-language="json"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">{</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">after-plan</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"paths"</span><span style="--0:#D6DEEB;--1:#403F53">: [</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">{</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">small</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"when"</span><span style="--0:#D6DEEB;--1:#403F53">: { </span><span style="--0:#7FDBCA;--1:#096E72">"type"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">output</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"file"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">plan.md</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"section"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">Size</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"contains"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">small</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53"> },</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"stages"</span><span style="--0:#D6DEEB;--1:#403F53">: [{ </span><span style="--0:#7FDBCA;--1:#096E72">"id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">implement</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"kind"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">agent</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"gate"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">auto</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53"> }]</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">},</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">{</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">pr-review</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"when"</span><span style="--0:#D6DEEB;--1:#403F53">: { </span><span style="--0:#7FDBCA;--1:#096E72">"type"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">command</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"run"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">test -f .no-review</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53"> },</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"not"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#FF6A83;--1:#A24848">true</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"stages"</span><span style="--0:#D6DEEB;--1:#403F53">: [{ </span><span style="--0:#7FDBCA;--1:#096E72">"id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">review</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"kind"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">review</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"gate"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">manual</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53"> }]</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">}</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">]</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">}</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="{  &quot;id&quot;: &quot;after-plan&quot;,  &quot;paths&quot;: [    {      &quot;id&quot;: &quot;small&quot;,      &quot;when&quot;: { &quot;type&quot;: &quot;output&quot;, &quot;file&quot;: &quot;plan.md&quot;, &quot;section&quot;: &quot;Size&quot;, &quot;contains&quot;: &quot;small&quot; },      &quot;stages&quot;: [{ &quot;id&quot;: &quot;implement&quot;, &quot;kind&quot;: &quot;agent&quot;, &quot;gate&quot;: &quot;auto&quot; }]    },    {      &quot;id&quot;: &quot;pr-review&quot;,      &quot;when&quot;: { &quot;type&quot;: &quot;command&quot;, &quot;run&quot;: &quot;test -f .no-review&quot; },      &quot;not&quot;: true,      &quot;stages&quot;: [{ &quot;id&quot;: &quot;review&quot;, &quot;kind&quot;: &quot;review&quot;, &quot;gate&quot;: &quot;manual&quot; }]    }  ]}"><div></div></button></div></figure></div>
+<ul>
+<li>The check happens when the stage before the branch ends. For a stage that waits for approval, that is when you approve.</li>
+<li>A <code dir="auto">command</code> runs in the worktree with the shell of your system, and stops after 10 minutes. A command that fails to start or times out means the condition does not hold.</li>
+<li>A missing file means the condition does not hold.</li>
+<li>Only the last path can leave out <code dir="auto">when</code>. An earlier path without <code dir="auto">when</code> is an error.</li>
+<li>No path holds and there is no Otherwise path: the task skips the branch.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="rules-for-a-branch">Rules for a branch</h3><a class="sl-anchor-link" href="#rules-for-a-branch"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Rules for a branch”</span></a></div>
+<ul>
+<li>A branch has 2 to 4 paths, and each path has at least one stage.</li>
+<li>A branch cannot be the first step.</li>
+<li>A branch cannot come right after another branch. Put a stage between them.</li>
+<li>A path cannot hold a <code dir="auto">context</code> or <code dir="auto">release</code> stage, a group or another branch.</li>
+<li>Every stage id and path id is used once in the whole file.</li>
+<li>A path with all its stages off is left out of new tasks. If only one path is left and it has a condition, the file is an error: turn on a stage in another path, or remove the branch. If only the Otherwise path is left, its stages run as plain steps.</li>
+<li>A path keeps the same rules for stages as a plain step: <code dir="auto">ownShell</code>, <code dir="auto">agent</code>, <code dir="auto">args</code>, <code dir="auto">ci</code>, <code dir="auto">endShell</code> and <code dir="auto">workflow</code>.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="rules-for-the-pipeline">Rules for the pipeline</h3><a class="sl-anchor-link" href="#rules-for-the-pipeline"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Rules for the pipeline”</span></a></div>
+<ul>
+<li>At least one step.</li>
+<li>Every id is used once, counting the stages inside groups and paths.</li>
+<li>A <code dir="auto">context</code> stage must be the first step. There is at most one.</li>
+<li>A <code dir="auto">release</code> stage must be the last step. There is at most one.</li>
+<li>A <code dir="auto">context</code> or <code dir="auto">release</code> stage cannot be inside a group.</li>
+<li>These rules count only stages that are on. A group needs 2 stages that are on. At least one stage must be on.</li>
+<li>When a task starts, a group with one stage on runs that stage on its own, and a group with none is left out.</li>
+<li><code dir="auto">"workflow": true</code> is only allowed on an <code dir="auto">agent</code> stage.</li>
+<li><code dir="auto">agent</code> and <code dir="auto">args</code> are only allowed on an <code dir="auto">agent</code> stage in a group that does not keep Terminal 1, on one with <code dir="auto">"ownShell": true</code>, or on an <code dir="auto">agent</code> or <code dir="auto">testing</code> stage of your own.</li>
+<li><code dir="auto">"ownShell": true</code> is only allowed on an <code dir="auto">agent</code> stage with an <code dir="auto">output</code>.</li>
+<li><code dir="auto">"ci": true</code> is only allowed on a <code dir="auto">testing</code> stage or an <code dir="auto">agent</code> stage without an <code dir="auto">output</code>.</li>
+<li><code dir="auto">"endShell": true</code> is only allowed on a <code dir="auto">context</code>, <code dir="auto">agent</code> or <code dir="auto">testing</code> stage. On a stage in Terminal 1 it is ignored.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="skill-placeholder">Skill placeholder</h3><a class="sl-anchor-link" href="#skill-placeholder"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Skill placeholder”</span></a></div>
+<p><code dir="auto">{skill:&lt;name&gt;}</code> becomes text for the agent of the task:</p>
+<table>
+<thead>
+<tr>
+<th>Case</th>
+<th>Text</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The agent has the skill and a sure call: Claude Code and Copilot CLI (<code dir="auto">/name</code>), Codex (<code dir="auto">$name</code>)</td>
+<td>The call, such as <code dir="auto">/review-pr</code></td>
+</tr>
+<tr>
+<td>A <code dir="auto">SKILL.md</code> with that name exists for any agent, in the worktree or in the main checkout (Gemini CLI and Cursor CLI, and a skill found only in the main checkout, always get this)</td>
+<td><code dir="auto">the skill in &lt;path&gt; (read that file and follow it)</code></td>
+</tr>
+<tr>
+<td>No such skill</td>
+<td><code dir="auto">the &lt;name&gt; skill</code>. The stage card says “The skill <name> was not found for <agent>.”</td>
+</tr>
+</tbody>
+</table>
+<p>The stage starts in every case. Each agent page says where it finds skills, for example <a href="/docs/agents/codex/#skills">Codex</a>.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="stage-catalog">Stage catalog</h3><a class="sl-anchor-link" href="#stage-catalog"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Stage catalog”</span></a></div>
+<p><strong>Add stage</strong> in the dashboard picks from this catalog. A stage has the kind, gate and checks below when you add it. Gate <code dir="auto">manual</code> is <strong>Wait for my approval</strong>. The stages marked “default” make up the <a href="#default-pipeline">default pipeline</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Id</th>
+<th>Name</th>
+<th>Kind</th>
+<th>Gate</th>
+<th>Output</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Understand</td>
+<td><code dir="auto">context</code></td>
+<td>Context</td>
+<td><code dir="auto">context</code></td>
+<td>manual</td>
+<td><code dir="auto">context.md</code></td>
+<td>Default. Reads the context sources of the task.</td>
+</tr>
+<tr>
+<td>Understand</td>
+<td><code dir="auto">research</code></td>
+<td>Research</td>
+<td><code dir="auto">agent</code></td>
+<td>manual</td>
+<td><code dir="auto">research.md</code></td>
+<td>Reads the code and docs the task touches.</td>
+</tr>
+<tr>
+<td>Understand</td>
+<td><code dir="auto">clarify</code></td>
+<td>Open questions</td>
+<td><code dir="auto">agent</code></td>
+<td>manual</td>
+<td><code dir="auto">questions.md</code></td>
+<td>Lists what is unclear, with a suggested answer for each.</td>
+</tr>
+<tr>
+<td>Design</td>
+<td><code dir="auto">spec</code></td>
+<td>Spec</td>
+<td><code dir="auto">agent</code></td>
+<td>manual</td>
+<td><code dir="auto">spec.md</code></td>
+<td>Default. Goal, scope, acceptance criteria and a code map.</td>
+</tr>
+<tr>
+<td>Design</td>
+<td><code dir="auto">ux-design</code></td>
+<td>UX design</td>
+<td><code dir="auto">agent</code></td>
+<td>manual</td>
+<td><code dir="auto">ux.md</code></td>
+<td>Screens, states, flows, accessibility.</td>
+</tr>
+<tr>
+<td>Design</td>
+<td><code dir="auto">architecture</code></td>
+<td>Architecture</td>
+<td><code dir="auto">agent</code></td>
+<td>manual</td>
+<td><code dir="auto">architecture.md</code></td>
+<td>Components, data flow, interfaces, trade-offs.</td>
+</tr>
+<tr>
+<td>Design</td>
+<td><code dir="auto">threat-model</code></td>
+<td>Threat model</td>
+<td><code dir="auto">agent</code></td>
+<td>manual</td>
+<td><code dir="auto">threat-model.md</code></td>
+<td>What an attacker could reach, and how each threat is handled.</td>
+</tr>
+<tr>
+<td>Design</td>
+<td><code dir="auto">plan</code></td>
+<td>Plan</td>
+<td><code dir="auto">agent</code></td>
+<td>manual</td>
+<td><code dir="auto">plan.md</code></td>
+<td>Default. Steps, files and tests. Offers a workflow.</td>
+</tr>
+<tr>
+<td>Build</td>
+<td><code dir="auto">test-spec</code></td>
+<td>Test spec</td>
+<td><code dir="auto">agent</code></td>
+<td>manual</td>
+<td><code dir="auto">test-spec.md</code></td>
+<td>Default. Test cases from the spec, without reading the code.</td>
+</tr>
+<tr>
+<td>Build</td>
+<td><code dir="auto">implement</code></td>
+<td>Implement</td>
+<td><code dir="auto">agent</code></td>
+<td>auto</td>
+<td>none</td>
+<td>Default. Tests first, then the code. Offers a workflow.</td>
+</tr>
+<tr>
+<td>Build</td>
+<td><code dir="auto">migration</code></td>
+<td>Data migration</td>
+<td><code dir="auto">agent</code></td>
+<td>manual</td>
+<td>none</td>
+<td>A data or schema migration, with a way to roll it back.</td>
+</tr>
+<tr>
+<td>Build</td>
+<td><code dir="auto">refactor</code></td>
+<td>Refactor</td>
+<td><code dir="auto">agent</code></td>
+<td>auto</td>
+<td>none</td>
+<td>Cleans up the changed code without changing what it does.</td>
+</tr>
+<tr>
+<td>Build</td>
+<td><code dir="auto">docs</code></td>
+<td>Documentation</td>
+<td><code dir="auto">agent</code></td>
+<td>auto</td>
+<td>none</td>
+<td>Updates the user and developer docs.</td>
+</tr>
+<tr>
+<td>Build</td>
+<td><code dir="auto">i18n</code></td>
+<td>Translations</td>
+<td><code dir="auto">agent</code></td>
+<td>auto</td>
+<td>none</td>
+<td>Adds or updates the translations of new UI text.</td>
+</tr>
+<tr>
+<td>Check</td>
+<td><code dir="auto">lint</code></td>
+<td>Lint and types</td>
+<td><code dir="auto">testing</code></td>
+<td>auto</td>
+<td>none</td>
+<td>Runs your lint and type check command. Needs a <code dir="auto">command</code>.</td>
+</tr>
+<tr>
+<td>Check</td>
+<td><code dir="auto">self-review</code></td>
+<td>Agent self-review</td>
+<td><code dir="auto">agent</code></td>
+<td>auto</td>
+<td><code dir="auto">self-review.md</code></td>
+<td>Reads the diff against the spec, lists problems and fixes them.</td>
+</tr>
+<tr>
+<td>Check</td>
+<td><code dir="auto">security</code></td>
+<td>Security review</td>
+<td><code dir="auto">agent</code></td>
+<td>manual</td>
+<td><code dir="auto">security.md</code></td>
+<td>Checks the diff for security problems.</td>
+</tr>
+<tr>
+<td>Check</td>
+<td><code dir="auto">performance</code></td>
+<td>Performance check</td>
+<td><code dir="auto">agent</code></td>
+<td>manual</td>
+<td><code dir="auto">performance.md</code></td>
+<td>Looks for slow paths in the diff.</td>
+</tr>
+<tr>
+<td>Check</td>
+<td><code dir="auto">accessibility</code></td>
+<td>Accessibility check</td>
+<td><code dir="auto">agent</code></td>
+<td>manual</td>
+<td><code dir="auto">accessibility.md</code></td>
+<td>Checks UI changes for keyboard, screen reader and contrast problems.</td>
+</tr>
+<tr>
+<td>Check</td>
+<td><code dir="auto">agent-review</code></td>
+<td>Review</td>
+<td><code dir="auto">agent</code></td>
+<td>auto</td>
+<td><code dir="auto">review.md</code></td>
+<td>Default. An agent reviews the changes against the spec in its own terminal, and sends the task back to Implement when they need fixes.</td>
+</tr>
+<tr>
+<td>Check</td>
+<td><code dir="auto">review</code></td>
+<td>Manual review</td>
+<td><code dir="auto">review</code></td>
+<td>manual</td>
+<td>none</td>
+<td>A person reads the diff and approves it or sends it back.</td>
+</tr>
+<tr>
+<td>Check</td>
+<td><code dir="auto">testing</code></td>
+<td>Automated tests</td>
+<td><code dir="auto">testing</code></td>
+<td>auto</td>
+<td>none</td>
+<td>Default. An agent adds a test for each case of the test spec and runs all tests, or a <code dir="auto">command</code> runs them.</td>
+</tr>
+<tr>
+<td>Check</td>
+<td><code dir="auto">e2e</code></td>
+<td>End-to-end tests</td>
+<td><code dir="auto">testing</code></td>
+<td>auto</td>
+<td>none</td>
+<td>Adds end-to-end tests, then runs them. Needs a <code dir="auto">command</code>.</td>
+</tr>
+<tr>
+<td>Check</td>
+<td><code dir="auto">qa</code></td>
+<td>Manual testing</td>
+<td><code dir="auto">manual</code></td>
+<td>manual</td>
+<td>none</td>
+<td>A person tries the change by hand.</td>
+</tr>
+<tr>
+<td>Check</td>
+<td><code dir="auto">design-review</code></td>
+<td>Design review</td>
+<td><code dir="auto">manual</code></td>
+<td>manual</td>
+<td>none</td>
+<td>A designer checks the UI.</td>
+</tr>
+<tr>
+<td>Ship</td>
+<td><code dir="auto">changelog</code></td>
+<td>Release notes</td>
+<td><code dir="auto">agent</code></td>
+<td>auto</td>
+<td>none</td>
+<td>Adds a changelog entry.</td>
+</tr>
+<tr>
+<td>Ship</td>
+<td><code dir="auto">staging</code></td>
+<td>Staging check</td>
+<td><code dir="auto">manual</code></td>
+<td>manual</td>
+<td>none</td>
+<td>You check the change on a staging server.</td>
+</tr>
+<tr>
+<td>Ship</td>
+<td><code dir="auto">release</code></td>
+<td>Release</td>
+<td><code dir="auto">release</code></td>
+<td>manual</td>
+<td>none</td>
+<td>Default. Pushes the branch and opens a pull request.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>The stages with an output have <code dir="auto">sections</code> for the checks. The <code dir="auto">review</code>, <code dir="auto">manual</code> and <code dir="auto">release</code> stages always wait for a person or an outside event, whatever the gate says.</li>
+<li><code dir="auto">lint</code> and <code dir="auto">e2e</code> run your own command, so the screen asks for a <strong>Command</strong>. Without one, an agent does the work.</li>
+<li>A catalog stage that is gone from the file keeps its catalog settings for a task on its way.</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="default-pipeline">Default pipeline</h3><a class="sl-anchor-link" href="#default-pipeline"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Default pipeline”</span></a></div>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="json"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">{</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"stages"</span><span style="--0:#D6DEEB;--1:#403F53">: [</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">{ </span><span style="--0:#7FDBCA;--1:#096E72">"id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">context</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"kind"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">context</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"gate"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">manual</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"output"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">context.md</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53"> },</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">{</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">spec</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"kind"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">agent</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"gate"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">manual</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"output"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">spec.md</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"sections"</span><span style="--0:#D6DEEB;--1:#403F53">: [</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">Goal</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">Scope</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">Out of scope</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">Acceptance criteria</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">Code map</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">]</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">},</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">{</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">plan</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"kind"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">agent</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"gate"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">manual</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"output"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">plan.md</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"sections"</span><span style="--0:#D6DEEB;--1:#403F53">: [</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">Steps</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">Files</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">Tests</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">],</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"workflow"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#FF6A83;--1:#A24848">true</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">},</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">{</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">build</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"name"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">Test spec and Implement</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"parallel"</span><span style="--0:#D6DEEB;--1:#403F53">: [</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">        </span></span><span style="--0:#D6DEEB;--1:#403F53">{</span></div></div><div class="ec-line"><div class="code"><span class="indent">          </span><span style="--0:#7FDBCA;--1:#096E72">"id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">test-spec</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">          </span><span style="--0:#7FDBCA;--1:#096E72">"kind"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">agent</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">          </span><span style="--0:#7FDBCA;--1:#096E72">"gate"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">manual</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">          </span><span style="--0:#7FDBCA;--1:#096E72">"output"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">test-spec.md</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">          </span><span style="--0:#7FDBCA;--1:#096E72">"sections"</span><span style="--0:#D6DEEB;--1:#403F53">: [</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">Cases</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">],</span></div></div><div class="ec-line"><div class="code"><span class="indent">          </span><span style="--0:#7FDBCA;--1:#096E72">"ownShell"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#FF6A83;--1:#A24848">true</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">        </span></span><span style="--0:#D6DEEB;--1:#403F53">},</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">        </span></span><span style="--0:#D6DEEB;--1:#403F53">{ </span><span style="--0:#7FDBCA;--1:#096E72">"id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">implement</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"kind"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">agent</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"gate"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">auto</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"workflow"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#FF6A83;--1:#A24848">true</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"ci"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#FF6A83;--1:#A24848">true</span><span style="--0:#D6DEEB;--1:#403F53"> }</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">      </span></span><span style="--0:#D6DEEB;--1:#403F53">]</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">},</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">{ </span><span style="--0:#7FDBCA;--1:#096E72">"id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">testing</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"name"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">Automated tests</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"kind"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">testing</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"gate"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">auto</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"ci"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#FF6A83;--1:#A24848">true</span><span style="--0:#D6DEEB;--1:#403F53"> },</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">{</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">agent-review</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"name"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">Review</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"kind"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">agent</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"gate"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">auto</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"output"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">review.md</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"sections"</span><span style="--0:#D6DEEB;--1:#403F53">: [</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">Findings</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">],</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"ownShell"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#FF6A83;--1:#A24848">true</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">},</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">{ </span><span style="--0:#7FDBCA;--1:#096E72">"id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">release</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"kind"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">release</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"gate"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">manual</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53"> }</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">]</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">}</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="{  &quot;stages&quot;: [    { &quot;id&quot;: &quot;context&quot;, &quot;kind&quot;: &quot;context&quot;, &quot;gate&quot;: &quot;manual&quot;, &quot;output&quot;: &quot;context.md&quot; },    {      &quot;id&quot;: &quot;spec&quot;,      &quot;kind&quot;: &quot;agent&quot;,      &quot;gate&quot;: &quot;manual&quot;,      &quot;output&quot;: &quot;spec.md&quot;,      &quot;sections&quot;: [&quot;Goal&quot;, &quot;Scope&quot;, &quot;Out of scope&quot;, &quot;Acceptance criteria&quot;, &quot;Code map&quot;]    },    {      &quot;id&quot;: &quot;plan&quot;,      &quot;kind&quot;: &quot;agent&quot;,      &quot;gate&quot;: &quot;manual&quot;,      &quot;output&quot;: &quot;plan.md&quot;,      &quot;sections&quot;: [&quot;Steps&quot;, &quot;Files&quot;, &quot;Tests&quot;],      &quot;workflow&quot;: true    },    {      &quot;id&quot;: &quot;build&quot;,      &quot;name&quot;: &quot;Test spec and Implement&quot;,      &quot;parallel&quot;: [        {          &quot;id&quot;: &quot;test-spec&quot;,          &quot;kind&quot;: &quot;agent&quot;,          &quot;gate&quot;: &quot;manual&quot;,          &quot;output&quot;: &quot;test-spec.md&quot;,          &quot;sections&quot;: [&quot;Cases&quot;],          &quot;ownShell&quot;: true        },        { &quot;id&quot;: &quot;implement&quot;, &quot;kind&quot;: &quot;agent&quot;, &quot;gate&quot;: &quot;auto&quot;, &quot;workflow&quot;: true, &quot;ci&quot;: true }      ]    },    { &quot;id&quot;: &quot;testing&quot;, &quot;name&quot;: &quot;Automated tests&quot;, &quot;kind&quot;: &quot;testing&quot;, &quot;gate&quot;: &quot;auto&quot;, &quot;ci&quot;: true },    {      &quot;id&quot;: &quot;agent-review&quot;,      &quot;name&quot;: &quot;Review&quot;,      &quot;kind&quot;: &quot;agent&quot;,      &quot;gate&quot;: &quot;auto&quot;,      &quot;output&quot;: &quot;review.md&quot;,      &quot;sections&quot;: [&quot;Findings&quot;],      &quot;ownShell&quot;: true    },    { &quot;id&quot;: &quot;release&quot;, &quot;kind&quot;: &quot;release&quot;, &quot;gate&quot;: &quot;manual&quot; }  ]}"><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h2"><h2 id="limits">Limits</h2><a class="sl-anchor-link" href="#limits"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Limits”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>What</th>
+<th>Limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stages in a group</td>
+<td>2 to 4. Only <code dir="auto">agent</code> and <code dir="auto">manual</code> stages.</td>
+</tr>
+<tr>
+<td>Paths in a branch</td>
+<td>2 to 4.</td>
+</tr>
+<tr>
+<td>Stage id, path id, group id</td>
+<td>Up to 40 characters, lower case words joined by <code dir="auto">-</code>.</td>
+</tr>
+<tr>
+<td>Display name</td>
+<td>1 to 60 characters.</td>
+</tr>
+<tr>
+<td>Sends back by a review agent from one stage</td>
+<td>2 per task. The third time the stage waits as <strong>Needs input</strong>. A person can send back as often as they like.</td>
+</tr>
+<tr>
+<td>Sends back by CI from one stage</td>
+<td>2 per task, shared with the review agent. The third red run waits for you.</td>
+</tr>
+<tr>
+<td>Wait for a CI run to start</td>
+<td>3 minutes.</td>
+</tr>
+<tr>
+<td>Wait for a CI run to finish</td>
+<td>30 minutes.</td>
+</tr>
+<tr>
+<td>A <code dir="auto">check</code> command, and a <code dir="auto">command</code> of a condition</td>
+<td>10 minutes each.</td>
+</tr>
+<tr>
+<td>Terminals per task</td>
+<td>6. Natamux runs 30 terminals in all.</td>
+</tr>
+<tr>
+<td>Shell for commands</td>
+<td><code dir="auto">sh -c</code>, or <code dir="auto">cmd.exe</code> on Windows.</td>
+</tr>
+<tr>
+<td>Attachments per task</td>
+<td>20 files, 20 MB each, 50 MB in all.</td>
+</tr>
+</tbody>
+</table>
+<div class="sl-heading-wrapper level-h2"><h2 id="context"><code dir="auto">context</code></h2><a class="sl-anchor-link" href="#context"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “context”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">sources</code></td>
+<td>array of sources</td>
+<td><code dir="auto">manual</code> and <code dir="auto">github-issue</code></td>
+<td>The ways a task can get its context. At least one.</td>
+</tr>
+</tbody>
+</table>
+<p>When you create a task, you pick one source with its type, for example <code dir="auto">--context github-issue:42</code>. If the file does not list that type, Natamux uses <code dir="auto">manual</code>.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="source-types">Source types</h3><a class="sl-anchor-link" href="#source-types"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Source types”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Fields</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">manual</code></td>
+<td><code dir="auto">type</code></td>
+<td>The title, notes and reference of the task become the context.</td>
+</tr>
+<tr>
+<td><code dir="auto">github-issue</code></td>
+<td><code dir="auto">type</code></td>
+<td>Natamux reads a GitHub issue with <code dir="auto">gh</code>.</td>
+</tr>
+<tr>
+<td><code dir="auto">skill</code></td>
+<td><code dir="auto">type</code>, <code dir="auto">name</code>, <code dir="auto">skill</code>, <code dir="auto">agent</code> (optional)</td>
+<td>An agent runs the skill and writes the context. Natamux names the skill the way the agent of the task needs.</td>
+</tr>
+<tr>
+<td><code dir="auto">mcp</code></td>
+<td><code dir="auto">type</code>, <code dir="auto">name</code>, <code dir="auto">prompt</code>, <code dir="auto">agent</code> (optional)</td>
+<td>An agent runs your <code dir="auto">prompt</code>, for example to read a ticket through an MCP server.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code dir="auto">name</code> is 1 to 60 characters.</li>
+<li><code dir="auto">skill</code> is the name of the skill, without the slash or the dollar sign.</li>
+<li>A <code dir="auto">skill</code> source is optional. <strong>Start a task</strong> offers every skill of the agents as <strong>An agent skill</strong>. Configure one to give it a name in <strong>Context from</strong>.</li>
+<li>A <code dir="auto">skill</code> source follows the three rules of the <a href="#skill-placeholder">skill placeholder</a>, as a whole line. For the skill <code dir="auto">fetch-ticket</code> and the reference <code dir="auto">ABC-1</code>, an agent with the skill gets <code dir="auto">/fetch-ticket ABC-1</code> (a call). Otherwise it gets <code dir="auto">Read &lt;path&gt; and follow it for ABC-1.</code> (the file), or <code dir="auto">Use the fetch-ticket skill for ABC-1.</code> (not found). The file format does not change.</li>
+<li><code dir="auto">prompt</code> can use <code dir="auto">{title}</code>, <code dir="auto">{description}</code>, <code dir="auto">{dir}</code> and <code dir="auto">{ref}</code>.</li>
+<li>The <code dir="auto">agent</code> field is accepted, but Natamux does not use it yet. The task’s own agent runs a <code dir="auto">skill</code> or <code dir="auto">mcp</code> source, or <code dir="auto">claude-code</code> when the task has none.</li>
+</ul>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="json"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">{</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"context"</span><span style="--0:#D6DEEB;--1:#403F53">: {</span></div></div><div class="ec-line"><div class="code"><span class="indent">    </span><span style="--0:#7FDBCA;--1:#096E72">"sources"</span><span style="--0:#D6DEEB;--1:#403F53">: [</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">      </span></span><span style="--0:#D6DEEB;--1:#403F53">{ </span><span style="--0:#7FDBCA;--1:#096E72">"type"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">manual</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53"> },</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">      </span></span><span style="--0:#D6DEEB;--1:#403F53">{ </span><span style="--0:#7FDBCA;--1:#096E72">"type"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">github-issue</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53"> },</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">      </span></span><span style="--0:#D6DEEB;--1:#403F53">{ </span><span style="--0:#7FDBCA;--1:#096E72">"type"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">mcp</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"name"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">Jira</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"prompt"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">Read ticket {ref} with the Jira MCP server. Write a summary to {dir}/context.md.</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53"> }</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">]</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">}</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">}</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="{  &quot;context&quot;: {    &quot;sources&quot;: [      { &quot;type&quot;: &quot;manual&quot; },      { &quot;type&quot;: &quot;github-issue&quot; },      { &quot;type&quot;: &quot;mcp&quot;, &quot;name&quot;: &quot;Jira&quot;, &quot;prompt&quot;: &quot;Read ticket {ref} with the Jira MCP server. Write a summary to {dir}/context.md.&quot; }    ]  }}"><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h2"><h2 id="tracker"><code dir="auto">tracker</code></h2><a class="sl-anchor-link" href="#tracker"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “tracker”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">type</code></td>
+<td><code dir="auto">github</code> or <code dir="auto">none</code></td>
+<td><code dir="auto">github</code></td>
+<td>The issue tracker. <code dir="auto">none</code> turns off issue creation.</td>
+</tr>
+<tr>
+<td><code dir="auto">createIssue</code></td>
+<td>string</td>
+<td><code dir="auto">manual</code></td>
+<td>When Natamux opens an issue for a task.</td>
+</tr>
+<tr>
+<td><code dir="auto">linkInPr</code></td>
+<td>boolean</td>
+<td><code dir="auto">true</code></td>
+<td>Add a closing line to the body of the pull request.</td>
+</tr>
+</tbody>
+</table>
+<p>Values of <code dir="auto">createIssue</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Natamux opens an issue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">never</code></td>
+<td>Never. The <strong>Create issue</strong> button is hidden.</td>
+</tr>
+<tr>
+<td><code dir="auto">manual</code> (default)</td>
+<td>Only when you ask for it (<strong>Create issue</strong>).</td>
+</tr>
+<tr>
+<td><code dir="auto">on-spec-approved</code></td>
+<td>When you approve the <code dir="auto">spec</code> stage. In a pipeline with no stage called <code dir="auto">spec</code>, when the pull request is opened.</td>
+</tr>
+<tr>
+<td><code dir="auto">on-pr</code></td>
+<td>When the pull request is opened.</td>
+</tr>
+</tbody>
+</table>
+<p>The issue gets the task title. Its body is the spec, or the task notes without one. With <code dir="auto">linkInPr</code>, the pull request body ends with <code dir="auto">Closes #42</code> for a GitHub issue, so the issue closes on merge. See <a href="/docs/guides/github/">GitHub</a>.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="agents"><code dir="auto">agents</code></h2><a class="sl-anchor-link" href="#agents"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “agents”</span></a></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code dir="auto">permissionMode</code></td>
+<td><code dir="auto">auto</code> or <code dir="auto">ask</code></td>
+<td><code dir="auto">auto</code></td>
+<td><code dir="auto">auto</code> starts each agent with the flag below, so it asks for permission less often. <code dir="auto">ask</code> adds no flag: each agent follows your own settings.</td>
+</tr>
+</tbody>
+</table>
+<p>The flag of each agent in <code dir="auto">auto</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>Flag</th>
+<th>What it allows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Claude Code</td>
+<td><code dir="auto">--permission-mode auto</code></td>
+<td>Claude Code checks each action and asks only when one looks risky.</td>
+</tr>
+<tr>
+<td>Codex</td>
+<td><code dir="auto">--sandbox workspace-write --ask-for-approval never</code></td>
+<td>Edits and commands inside its sandbox of the worktree, without asking.</td>
+</tr>
+<tr>
+<td>Gemini CLI</td>
+<td><code dir="auto">--approval-mode yolo</code></td>
+<td>Every tool call, without asking.</td>
+</tr>
+<tr>
+<td>Copilot CLI</td>
+<td><code dir="auto">--allow-all-tools</code></td>
+<td>Every tool, without asking. It still checks paths and URLs.</td>
+</tr>
+<tr>
+<td>Cursor CLI</td>
+<td><code dir="auto">--force</code></td>
+<td>Every command that is not denied in its settings, without asking.</td>
+</tr>
+</tbody>
+</table>
+<p>Only Claude Code has a check on each action in this mode. The other agents run commands without asking, in the task’s worktree with your user rights. Use <code dir="auto">ask</code> for a repository where that is not safe:</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="json"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">{ </span><span style="--0:#7FDBCA;--1:#096E72">"agents"</span><span style="--0:#D6DEEB;--1:#403F53">: { </span><span style="--0:#7FDBCA;--1:#096E72">"permissionMode"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">ask</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53"> } }</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="{ &quot;agents&quot;: { &quot;permissionMode&quot;: &quot;ask&quot; } }"><div></div></button></div></figure></div>
+<p>The flag comes before the words of <code dir="auto">NATAMUX_&lt;AGENT&gt;_ARGS</code>. When those words repeat or change the flag, the agent’s own rule for flags decides. The setting counts for the next agent Natamux starts, not for one that runs.</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="examples">Examples</h2><a class="sl-anchor-link" href="#examples"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Examples”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="drop-the-planning-stages">Drop the planning stages</h3><a class="sl-anchor-link" href="#drop-the-planning-stages"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Drop the planning stages”</span></a></div>
+<p>Go from context straight to code. Remove <code dir="auto">spec</code>, <code dir="auto">plan</code> and the group, and add one <code dir="auto">implement</code> stage. With <code dir="auto">requireCommit</code> and <code dir="auto">requireClean</code> the agent commits its work. Without them it leaves the changes for you to commit:</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="json"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">{</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"stages"</span><span style="--0:#D6DEEB;--1:#403F53">: [</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">{ </span><span style="--0:#7FDBCA;--1:#096E72">"id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">context</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"kind"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">context</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"gate"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">manual</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"output"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">context.md</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53"> },</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">{ </span><span style="--0:#7FDBCA;--1:#096E72">"id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">implement</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"kind"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">agent</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"gate"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">auto</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"requireCommit"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#FF6A83;--1:#A24848">true</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"requireClean"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#FF6A83;--1:#A24848">true</span><span style="--0:#D6DEEB;--1:#403F53"> },</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">{ </span><span style="--0:#7FDBCA;--1:#096E72">"id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">review</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"kind"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">review</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"gate"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">manual</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53"> },</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">{ </span><span style="--0:#7FDBCA;--1:#096E72">"id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">release</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"kind"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">release</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"gate"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">manual</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53"> }</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">]</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">}</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="{  &quot;stages&quot;: [    { &quot;id&quot;: &quot;context&quot;, &quot;kind&quot;: &quot;context&quot;, &quot;gate&quot;: &quot;manual&quot;, &quot;output&quot;: &quot;context.md&quot; },    { &quot;id&quot;: &quot;implement&quot;, &quot;kind&quot;: &quot;agent&quot;, &quot;gate&quot;: &quot;auto&quot;, &quot;requireCommit&quot;: true, &quot;requireClean&quot;: true },    { &quot;id&quot;: &quot;review&quot;, &quot;kind&quot;: &quot;review&quot;, &quot;gate&quot;: &quot;manual&quot; },    { &quot;id&quot;: &quot;release&quot;, &quot;kind&quot;: &quot;release&quot;, &quot;gate&quot;: &quot;manual&quot; }  ]}"><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="run-a-test-command">Run a test command</h3><a class="sl-anchor-link" href="#run-a-test-command"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Run a test command”</span></a></div>
+<p>Run your tests in a shell. The stage passes when the command exits with 0:</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="json"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">{</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"stages"</span><span style="--0:#D6DEEB;--1:#403F53">: [</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">{ </span><span style="--0:#7FDBCA;--1:#096E72">"id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">implement</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"kind"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">agent</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"gate"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">auto</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"requireCommit"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#FF6A83;--1:#A24848">true</span><span style="--0:#D6DEEB;--1:#403F53"> },</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">{ </span><span style="--0:#7FDBCA;--1:#096E72">"id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">review</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"kind"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">review</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"gate"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">manual</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53"> },</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">{ </span><span style="--0:#7FDBCA;--1:#096E72">"id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">testing</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"kind"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">testing</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"gate"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">auto</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"command"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">pnpm test</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53"> },</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">{ </span><span style="--0:#7FDBCA;--1:#096E72">"id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">release</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"kind"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">release</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"gate"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">manual</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53"> }</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">]</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">}</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="{  &quot;stages&quot;: [    { &quot;id&quot;: &quot;implement&quot;, &quot;kind&quot;: &quot;agent&quot;, &quot;gate&quot;: &quot;auto&quot;, &quot;requireCommit&quot;: true },    { &quot;id&quot;: &quot;review&quot;, &quot;kind&quot;: &quot;review&quot;, &quot;gate&quot;: &quot;manual&quot; },    { &quot;id&quot;: &quot;testing&quot;, &quot;kind&quot;: &quot;testing&quot;, &quot;gate&quot;: &quot;auto&quot;, &quot;command&quot;: &quot;pnpm test&quot; },    { &quot;id&quot;: &quot;release&quot;, &quot;kind&quot;: &quot;release&quot;, &quot;gate&quot;: &quot;manual&quot; }  ]}"><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="check-a-command-after-an-agent-stage">Check a command after an agent stage</h3><a class="sl-anchor-link" href="#check-a-command-after-an-agent-stage"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Check a command after an agent stage”</span></a></div>
+<p>Make a stage fail until a command passes. Here the <code dir="auto">implement</code> stage needs a commit and a passing lint:</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="json"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">{</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"stages"</span><span style="--0:#D6DEEB;--1:#403F53">: [</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">{</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">implement</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"kind"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">agent</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"gate"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">auto</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"requireCommit"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#FF6A83;--1:#A24848">true</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"check"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">pnpm lint</span><span style="--0:#D9F5DD;--1:#111111">"</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">},</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">{ </span><span style="--0:#7FDBCA;--1:#096E72">"id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">review</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"kind"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">review</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"gate"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">manual</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53"> }</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">]</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">}</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="{  &quot;stages&quot;: [    {      &quot;id&quot;: &quot;implement&quot;,      &quot;kind&quot;: &quot;agent&quot;,      &quot;gate&quot;: &quot;auto&quot;,      &quot;requireCommit&quot;: true,      &quot;check&quot;: &quot;pnpm lint&quot;    },    { &quot;id&quot;: &quot;review&quot;, &quot;kind&quot;: &quot;review&quot;, &quot;gate&quot;: &quot;manual&quot; }  ]}"><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="run-stages-side-by-side">Run stages side by side</h3><a class="sl-anchor-link" href="#run-stages-side-by-side"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Run stages side by side”</span></a></div>
+<p>Write the docs while the agent writes the code. Both stages start together, each in its own terminal:</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="json"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">{</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"stages"</span><span style="--0:#D6DEEB;--1:#403F53">: [</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">{</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">build</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"name"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">Code and docs</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">      </span><span style="--0:#7FDBCA;--1:#096E72">"parallel"</span><span style="--0:#D6DEEB;--1:#403F53">: [</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">        </span></span><span style="--0:#D6DEEB;--1:#403F53">{ </span><span style="--0:#7FDBCA;--1:#096E72">"id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">implement</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"kind"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">agent</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"gate"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">auto</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"requireCommit"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#FF6A83;--1:#A24848">true</span><span style="--0:#D6DEEB;--1:#403F53"> },</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">        </span></span><span style="--0:#D6DEEB;--1:#403F53">{</span></div></div><div class="ec-line"><div class="code"><span class="indent">          </span><span style="--0:#7FDBCA;--1:#096E72">"id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">docs</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">          </span><span style="--0:#7FDBCA;--1:#096E72">"kind"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">agent</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">          </span><span style="--0:#7FDBCA;--1:#096E72">"gate"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">manual</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">          </span><span style="--0:#7FDBCA;--1:#096E72">"output"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">docs-notes.md</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">          </span><span style="--0:#7FDBCA;--1:#096E72">"sections"</span><span style="--0:#D6DEEB;--1:#403F53">: [</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">Changes</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">],</span></div></div><div class="ec-line"><div class="code"><span class="indent">          </span><span style="--0:#7FDBCA;--1:#096E72">"prompt"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">Task: {title}</span><span style="--0:#F78C6C;--1:#AA0982">\n</span><span style="--0:#C789D6;--1:#7C5686">Write {dir}/docs-notes.md with a Changes section that lists what the docs must say. Do not change any code.</span><span style="--0:#D9F5DD;--1:#111111">"</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">        </span></span><span style="--0:#D6DEEB;--1:#403F53">}</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">      </span></span><span style="--0:#D6DEEB;--1:#403F53">]</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">},</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">    </span></span><span style="--0:#D6DEEB;--1:#403F53">{ </span><span style="--0:#7FDBCA;--1:#096E72">"id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">review</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"kind"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">review</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"gate"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">manual</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53"> }</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#D6DEEB;--1:#403F53">  </span></span><span style="--0:#D6DEEB;--1:#403F53">]</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">}</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="{  &quot;stages&quot;: [    {      &quot;id&quot;: &quot;build&quot;,      &quot;name&quot;: &quot;Code and docs&quot;,      &quot;parallel&quot;: [        { &quot;id&quot;: &quot;implement&quot;, &quot;kind&quot;: &quot;agent&quot;, &quot;gate&quot;: &quot;auto&quot;, &quot;requireCommit&quot;: true },        {          &quot;id&quot;: &quot;docs&quot;,          &quot;kind&quot;: &quot;agent&quot;,          &quot;gate&quot;: &quot;manual&quot;,          &quot;output&quot;: &quot;docs-notes.md&quot;,          &quot;sections&quot;: [&quot;Changes&quot;],          &quot;prompt&quot;: &quot;Task: {title}\nWrite {dir}/docs-notes.md with a Changes section that lists what the docs must say. Do not change any code.&quot;        }      ]    },    { &quot;id&quot;: &quot;review&quot;, &quot;kind&quot;: &quot;review&quot;, &quot;gate&quot;: &quot;manual&quot; }  ]}"><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="add-a-manual-sign-off">Add a manual sign-off</h3><a class="sl-anchor-link" href="#add-a-manual-sign-off"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Add a manual sign-off”</span></a></div>
+<p>A <code dir="auto">manual</code> stage waits for your approval. Use <code dir="auto">doneWhen</code> to tell people what it needs:</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="json"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">{ </span><span style="--0:#7FDBCA;--1:#096E72">"id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">legal</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"kind"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">manual</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"gate"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">manual</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">, </span><span style="--0:#7FDBCA;--1:#096E72">"doneWhen"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">Legal signs off.</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53"> }</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="{ &quot;id&quot;: &quot;legal&quot;, &quot;kind&quot;: &quot;manual&quot;, &quot;gate&quot;: &quot;manual&quot;, &quot;doneWhen&quot;: &quot;Legal signs off.&quot; }"><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="review-with-another-agent">Review with another agent</h3><a class="sl-anchor-link" href="#review-with-another-agent"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Review with another agent”</span></a></div>
+<p>Let Codex review the work of the task’s agent. Copy the <a href="#default-pipeline">default pipeline</a> and add <code dir="auto">agent</code> and <code dir="auto">args</code> to the Review stage:</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="json"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">{</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">agent-review</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"name"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">Review</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"kind"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">agent</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"gate"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">auto</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"output"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">review.md</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"sections"</span><span style="--0:#D6DEEB;--1:#403F53">: [</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">Findings</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">],</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"ownShell"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#FF6A83;--1:#A24848">true</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"agent"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">codex</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"args"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">--model gpt-5</span><span style="--0:#D9F5DD;--1:#111111">"</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">}</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="{  &quot;id&quot;: &quot;agent-review&quot;,  &quot;name&quot;: &quot;Review&quot;,  &quot;kind&quot;: &quot;agent&quot;,  &quot;gate&quot;: &quot;auto&quot;,  &quot;output&quot;: &quot;review.md&quot;,  &quot;sections&quot;: [&quot;Findings&quot;],  &quot;ownShell&quot;: true,  &quot;agent&quot;: &quot;codex&quot;,  &quot;args&quot;: &quot;--model gpt-5&quot;}"><div></div></button></div></figure></div>
+<p><strong>Agent</strong> and <strong>Arguments</strong> in <a href="/docs/guides/project-settings/#choose-the-review-agent">Project settings</a> write the same fields.</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="turn-off-issues">Turn off issues</h3><a class="sl-anchor-link" href="#turn-off-issues"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Turn off issues”</span></a></div>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="json"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">{ </span><span style="--0:#7FDBCA;--1:#096E72">"tracker"</span><span style="--0:#D6DEEB;--1:#403F53">: { </span><span style="--0:#7FDBCA;--1:#096E72">"type"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">none</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53"> } }</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="{ &quot;tracker&quot;: { &quot;type&quot;: &quot;none&quot; } }"><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h2"><h2 id="related">Related</h2><a class="sl-anchor-link" href="#related"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 1 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 0 0-1.42-1.42m8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 1 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l3.88-3.89a4.49 4.49 0 0 0 0-6.33M8.83 15.17a1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.92-4.92a1 1 0 1 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Related”</span></a></div>
+<ul>
+<li><a href="/docs/concepts/stages/">Stages</a>: how kinds, gates and checks work</li>
+<li><a href="/docs/guides/project-settings/">Project settings</a>: edit the settings on a screen</li>
+<li><a href="/docs/concepts/review-loop/">The review loop</a>: the default pipeline at work</li>
+<li><a href="/docs/reference/http-api/">HTTP API</a>: read and write the settings from a script</li>
+</ul>
+</div><footer class="sl-flex astro-tmsbrsxh"><div class="meta sl-flex astro-tmsbrsxh"><a href="https://github.com/lenhatthanh20/natamux/edit/main/site/src/content/docs/docs/reference/configuration.md" class="sl-flex print:hidden astro-5asema2y"><svg aria-hidden="true" class="astro-5asema2y astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.2em;"><path d="M22 7.24a1 1 0 0 0-.29-.71l-4.24-4.24a1 1 0 0 0-1.1-.22 1 1 0 0 0-.32.22l-2.83 2.83L2.29 16.05a1 1 0 0 0-.29.71V21a1 1 0 0 0 1 1h4.24a1 1 0 0 0 .76-.29l10.87-10.93L21.71 8c.1-.1.17-.2.22-.33a1 1 0 0 0 0-.24v-.14l.07-.05ZM6.83 20H4v-2.83l9.93-9.93 2.83 2.83L6.83 20ZM18.17 8.66l-2.83-2.83 1.42-1.41 2.82 2.82-1.41 1.42Z"/></svg>Edit page</a><p>Last updated: <time datetime="2026-10-22T19:50:43.000Z">Oct 22, 2026</time></p></div><div class="pagination-links print:hidden astro-ukqbcvit" dir="ltr"><a href="/docs/reference/cli/" rel="prev" class="astro-ukqbcvit"><svg aria-hidden="true" class="astro-ukqbcvit astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg><span class="astro-ukqbcvit">Previous<br class="astro-ukqbcvit"><span class="link-title astro-ukqbcvit">CLI reference</span></span></a><a href="/docs/reference/environment-variables/" rel="next" class="astro-ukqbcvit"><svg aria-hidden="true" class="astro-ukqbcvit astro-vnwekxjx" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg><span class="astro-ukqbcvit">Next<br class="astro-ukqbcvit"><span class="link-title astro-ukqbcvit">Environment variables</span></span></a></div></footer></div></div></main></div></div></div></div></body></html>
