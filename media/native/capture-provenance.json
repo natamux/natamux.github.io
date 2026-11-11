@@ -1,0 +1,1689 @@
+{
+  "appVersion": "1.0.17",
+  "releaseURL": "https://github.com/lenhatthanh20/natamux/releases/tag/v1.0.17",
+  "releaseAsset": {
+    "filename": "Natamux-mac-arm64.dmg",
+    "sha256": "d9abd798fca3710975c4b4536d7446a19d4b9a7bb11b5812768107a0c5cbfd2c"
+  },
+  "capturedAt": "2026-11-03",
+  "display": "Dell P3223QE",
+  "capture": "Native macOS screencapture",
+  "rawWidth": 3840,
+  "rawHeight": 2160,
+  "scriptedAgents": true,
+  "recordings": [
+    {
+      "name": "hero-dark",
+      "raw": {
+        "filename": "workflow-dark.mov",
+        "sha256": "74f6d4d9a262fea66cbf951e305305477fbc75ce370381173cee4b966d4e9845",
+        "width": 3840,
+        "height": 2160
+      },
+      "cuts": [
+        [
+          2,
+          5
+        ],
+        [
+          14,
+          20
+        ],
+        [
+          30,
+          34
+        ],
+        [
+          38,
+          43
+        ],
+        [
+          63,
+          67
+        ]
+      ],
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ],
+      "posterAt": 18,
+      "video": {
+        "filename": "hero-dark.mp4",
+        "sha256": "2a44a4f7270e98b9108cd22532363f4f0feb27074ac46e914272b2084d42ce29",
+        "bytes": 1207884,
+        "width": 1920,
+        "height": 1080,
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "frameRate": "30/1",
+        "frames": 660,
+        "duration": 22.0,
+        "audio": false
+      },
+      "poster": {
+        "filename": "hero-dark.webp",
+        "sha256": "bbfa743eb2339d684d0fade965a27498900a2288059026888f22613336be217a",
+        "bytes": 92942,
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "name": "hero-light",
+      "raw": {
+        "filename": "workflow-light.mov",
+        "sha256": "d9714dadee715599a5e7c38ea6cecd518e804ae3e9ba69e19b75d13379e0b617",
+        "width": 3840,
+        "height": 2160
+      },
+      "cuts": [
+        [
+          2,
+          5
+        ],
+        [
+          14,
+          20
+        ],
+        [
+          30,
+          34
+        ],
+        [
+          38,
+          43
+        ],
+        [
+          63,
+          67
+        ]
+      ],
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ],
+      "posterAt": 18,
+      "video": {
+        "filename": "hero-light.mp4",
+        "sha256": "781f4ea8beec6c2b17c79fe32abae1c7e9581441f015cff00dfd46f602dd4cf9",
+        "bytes": 1136671,
+        "width": 1920,
+        "height": 1080,
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "frameRate": "30/1",
+        "frames": 660,
+        "duration": 22.0,
+        "audio": false
+      },
+      "poster": {
+        "filename": "hero-light.webp",
+        "sha256": "41b6a2f5a15d7d8a01c5f03338236597c7d062ad67d1f3f9aeb1925a27fcc556",
+        "bytes": 90168,
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "name": "status-dark",
+      "raw": {
+        "filename": "status-dark.mov",
+        "sha256": "ce3688f77845b7eeb29a32617f5273e3ad4f0c0403d8dd4043de98ade18c942e",
+        "width": 3840,
+        "height": 2160
+      },
+      "cuts": [
+        [
+          1,
+          15
+        ]
+      ],
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ],
+      "posterAt": 1,
+      "video": {
+        "filename": "status-dark.mp4",
+        "sha256": "bb251f303e645a45fe6a019cbeb8b3047943c188f0f8002bb7849afcfcef92f7",
+        "bytes": 324398,
+        "width": 1600,
+        "height": 900,
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "frameRate": "30/1",
+        "frames": 420,
+        "duration": 14.0,
+        "audio": false
+      },
+      "poster": {
+        "filename": "status-dark.webp",
+        "sha256": "308646f48f03856b6d03d7d75755663944a4722696abea5f645e05d4888d0728",
+        "bytes": 66552,
+        "width": 1600,
+        "height": 900
+      }
+    },
+    {
+      "name": "status-light",
+      "raw": {
+        "filename": "status-light.mov",
+        "sha256": "429aa84f24a7a7a8ba37a7dd1b858456438cb5fd6318b2e6fed4854c7d5f944e",
+        "width": 3840,
+        "height": 2160
+      },
+      "cuts": [
+        [
+          1,
+          15
+        ]
+      ],
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ],
+      "posterAt": 1,
+      "video": {
+        "filename": "status-light.mp4",
+        "sha256": "dac90f8070d37e9b2669b950cf64af349578feecd47b3851ead2526b303e47f1",
+        "bytes": 307868,
+        "width": 1600,
+        "height": 900,
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "frameRate": "30/1",
+        "frames": 420,
+        "duration": 14.0,
+        "audio": false
+      },
+      "poster": {
+        "filename": "status-light.webp",
+        "sha256": "f4f1a67b8cf4a80e4336374da39342f2bff3180bf616acbc0380c437876bae12",
+        "bytes": 63616,
+        "width": 1600,
+        "height": 900
+      }
+    },
+    {
+      "name": "progress-dark",
+      "raw": {
+        "filename": "workflow-dark.mov",
+        "sha256": "74f6d4d9a262fea66cbf951e305305477fbc75ce370381173cee4b966d4e9845",
+        "width": 3840,
+        "height": 2160
+      },
+      "cuts": [
+        [
+          2,
+          5
+        ],
+        [
+          14,
+          20
+        ],
+        [
+          30,
+          34
+        ],
+        [
+          38,
+          43
+        ],
+        [
+          63,
+          67
+        ]
+      ],
+      "crop": [
+        2800,
+        60,
+        1000,
+        2000
+      ],
+      "posterAt": 18,
+      "video": {
+        "filename": "progress-dark.mp4",
+        "sha256": "03908801a850d412f2c3c179ad64edafcb649076f626dc7a44ab2026705e4493",
+        "bytes": 589473,
+        "width": 800,
+        "height": 1600,
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "frameRate": "30/1",
+        "frames": 660,
+        "duration": 22.0,
+        "audio": false
+      },
+      "poster": {
+        "filename": "progress-dark.webp",
+        "sha256": "8d8913925056648e0e42bf2c5bffba3b871cb885b9dcfb66e4fceab1874e8d5f",
+        "bytes": 38092,
+        "width": 800,
+        "height": 1600
+      }
+    },
+    {
+      "name": "progress-light",
+      "raw": {
+        "filename": "workflow-light.mov",
+        "sha256": "d9714dadee715599a5e7c38ea6cecd518e804ae3e9ba69e19b75d13379e0b617",
+        "width": 3840,
+        "height": 2160
+      },
+      "cuts": [
+        [
+          2,
+          5
+        ],
+        [
+          14,
+          20
+        ],
+        [
+          30,
+          34
+        ],
+        [
+          38,
+          43
+        ],
+        [
+          63,
+          67
+        ]
+      ],
+      "crop": [
+        2800,
+        60,
+        1000,
+        2000
+      ],
+      "posterAt": 18,
+      "video": {
+        "filename": "progress-light.mp4",
+        "sha256": "eb347e7e82a249be97b86f4c324d217a257e3b969bbb9da0e7cbe4c3dffff151",
+        "bytes": 547840,
+        "width": 800,
+        "height": 1600,
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "frameRate": "30/1",
+        "frames": 660,
+        "duration": 22.0,
+        "audio": false
+      },
+      "poster": {
+        "filename": "progress-light.webp",
+        "sha256": "62ac8c9c782b513d4aead99cb32e25b7b9c9cc5db67ac8f77324a7f7485cfa51",
+        "bytes": 35438,
+        "width": 800,
+        "height": 1600
+      }
+    },
+    {
+      "name": "review-dark",
+      "raw": {
+        "filename": "review-dark.mov",
+        "sha256": "67137d4f31d5b6a3acf68c1e234227974fe4c9799f31978f9467a7d54bcba725",
+        "width": 3840,
+        "height": 2160
+      },
+      "cuts": [
+        [
+          1,
+          17
+        ]
+      ],
+      "crop": [
+        680,
+        68,
+        3152,
+        1970
+      ],
+      "posterAt": 9,
+      "video": {
+        "filename": "review-dark.mp4",
+        "sha256": "af7d3f90a90b1dbcb11dc4ccb61adbc684a6bc8bdb92e266e71f09f1f2a5cdfe",
+        "bytes": 220079,
+        "width": 1600,
+        "height": 1000,
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "frameRate": "30/1",
+        "frames": 480,
+        "duration": 16.0,
+        "audio": false
+      },
+      "poster": {
+        "filename": "review-dark.webp",
+        "sha256": "a5ce3e48bbd85123f7142d1f8bd4d1dcdb858d9d49a508dc8501b1cd3981cfdb",
+        "bytes": 27040,
+        "width": 1600,
+        "height": 1000
+      }
+    },
+    {
+      "name": "review-light",
+      "raw": {
+        "filename": "review-light.mov",
+        "sha256": "e5ec1207b3c7e04314fa05b1a36baff4a03a1742d89da5130cd758914bc28152",
+        "width": 3840,
+        "height": 2160
+      },
+      "cuts": [
+        [
+          1,
+          17
+        ]
+      ],
+      "crop": [
+        680,
+        68,
+        3152,
+        1970
+      ],
+      "posterAt": 9,
+      "video": {
+        "filename": "review-light.mp4",
+        "sha256": "2ad845af7d9cb066f187b18872c8a549e852d5ccefadb02643e4cef43f3fcfee",
+        "bytes": 209313,
+        "width": 1600,
+        "height": 1000,
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "frameRate": "30/1",
+        "frames": 480,
+        "duration": 16.0,
+        "audio": false
+      },
+      "poster": {
+        "filename": "review-light.webp",
+        "sha256": "1e853d1d3e9e6482bae2cc74e1ed8604509d1348c2aa03c03211c6c45787bcf1",
+        "bytes": 27312,
+        "width": 1600,
+        "height": 1000
+      }
+    },
+    {
+      "name": "settings-dark",
+      "raw": {
+        "filename": "settings-dark.mov",
+        "sha256": "68b3d689fefb1b936173ec0457d5b7042ba6852092c7bf28901a69818b458e40",
+        "width": 3840,
+        "height": 2160
+      },
+      "cuts": [
+        [
+          1,
+          23
+        ]
+      ],
+      "crop": [
+        440,
+        120,
+        3360,
+        1890
+      ],
+      "posterAt": 8,
+      "video": {
+        "filename": "settings-dark.mp4",
+        "sha256": "1aff6f1d3d9ef3392113ff73f6921aec7bbc08d069f9e75340987a10aabc46f7",
+        "bytes": 484988,
+        "width": 1600,
+        "height": 900,
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "frameRate": "30/1",
+        "frames": 660,
+        "duration": 22.0,
+        "audio": false
+      },
+      "poster": {
+        "filename": "settings-dark.webp",
+        "sha256": "0958e646505b3fbe8c8d23805ee341c277b13235a1e7791c0a2da83cec262be3",
+        "bytes": 48178,
+        "width": 1600,
+        "height": 900
+      }
+    },
+    {
+      "name": "settings-light",
+      "raw": {
+        "filename": "settings-light.mov",
+        "sha256": "629af84236f1595efdf854436abf09f04be5ec4543bcc26e0416c445525c412f",
+        "width": 3840,
+        "height": 2160
+      },
+      "cuts": [
+        [
+          1,
+          23
+        ]
+      ],
+      "crop": [
+        440,
+        120,
+        3360,
+        1890
+      ],
+      "posterAt": 8,
+      "video": {
+        "filename": "settings-light.mp4",
+        "sha256": "bb0f813accdbbc775a8890e8690e1ad7e6e2f0ffeaa6abe95a6d181682d3d215",
+        "bytes": 457320,
+        "width": 1600,
+        "height": 900,
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "frameRate": "30/1",
+        "frames": 660,
+        "duration": 22.0,
+        "audio": false
+      },
+      "poster": {
+        "filename": "settings-light.webp",
+        "sha256": "067fbcb7acf950d336da1f7d6710befcc93eaf4a95de715beb5e66c6d4d6d5b8",
+        "bytes": 47726,
+        "width": 1600,
+        "height": 900
+      }
+    },
+    {
+      "name": "editor-dark",
+      "raw": {
+        "filename": "editor-dark.mov",
+        "sha256": "70d0141e9f660369d2e513883f400dd2e9226f698f0222c89485130cd8eb9bab",
+        "width": 3840,
+        "height": 2160
+      },
+      "cuts": [
+        [
+          1,
+          17
+        ]
+      ],
+      "crop": [
+        680,
+        68,
+        3152,
+        1970
+      ],
+      "posterAt": 8,
+      "video": {
+        "filename": "editor-dark.mp4",
+        "sha256": "244d86ebd1b9964e98ba0edeae4235e611c95fb42c036724c0df39fc8ad4a165",
+        "bytes": 240685,
+        "width": 1600,
+        "height": 1000,
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "frameRate": "30/1",
+        "frames": 480,
+        "duration": 16.0,
+        "audio": false
+      },
+      "poster": {
+        "filename": "editor-dark.webp",
+        "sha256": "f97e8e22e251bf88c16a16b7b6fc5d0a5854aac7b1c9392e7d5b5b8fa620bc90",
+        "bytes": 33358,
+        "width": 1600,
+        "height": 1000
+      }
+    },
+    {
+      "name": "editor-light",
+      "raw": {
+        "filename": "editor-light.mov",
+        "sha256": "b215ebe26f26939073a1b86cdfec9c02ea7f0a6d2149afca6f1da479954212e0",
+        "width": 3840,
+        "height": 2160
+      },
+      "cuts": [
+        [
+          1,
+          17
+        ]
+      ],
+      "crop": [
+        680,
+        68,
+        3152,
+        1970
+      ],
+      "posterAt": 8,
+      "video": {
+        "filename": "editor-light.mp4",
+        "sha256": "95ab0b62bd57c9e2739a35f90496cf433ebca45ba30d7554512be645a7233623",
+        "bytes": 243615,
+        "width": 1600,
+        "height": 1000,
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "frameRate": "30/1",
+        "frames": 480,
+        "duration": 16.0,
+        "audio": false
+      },
+      "poster": {
+        "filename": "editor-light.webp",
+        "sha256": "d8ca93a74934b13c1e75cc492c544f03fdce8beb9460495051a6300c22d96de4",
+        "bytes": 32150,
+        "width": 1600,
+        "height": 1000
+      }
+    },
+    {
+      "name": "agents-dark",
+      "raw": {
+        "filename": "agents-dark.mov",
+        "sha256": "36ea8461496b930b842976bce16570cc61602031899dc1de4ccc0acb94b918e9",
+        "width": 3840,
+        "height": 2160
+      },
+      "cuts": [
+        [
+          1,
+          17
+        ]
+      ],
+      "crop": [
+        680,
+        68,
+        3152,
+        1970
+      ],
+      "posterAt": 7,
+      "video": {
+        "filename": "agents-dark.mp4",
+        "sha256": "bcb5249a7778e17b82e5b605f7a51ebf7aad4f2759dcf71eba4fded4ee469058",
+        "bytes": 704623,
+        "width": 1600,
+        "height": 1000,
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "frameRate": "30/1",
+        "frames": 480,
+        "duration": 16.0,
+        "audio": false
+      },
+      "poster": {
+        "filename": "agents-dark.webp",
+        "sha256": "cc71eff21d199de2b89c7b16cdfd77cc7c517ffc60a4778f7cbcd7ccebefdd7c",
+        "bytes": 97712,
+        "width": 1600,
+        "height": 1000
+      }
+    },
+    {
+      "name": "agents-light",
+      "raw": {
+        "filename": "agents-light.mov",
+        "sha256": "f1df86583838342835b8e128a997f8ce210c935a7d6c2ed83cfa0e399a84ad0f",
+        "width": 3840,
+        "height": 2160
+      },
+      "cuts": [
+        [
+          1,
+          17
+        ]
+      ],
+      "crop": [
+        680,
+        68,
+        3152,
+        1970
+      ],
+      "posterAt": 7,
+      "video": {
+        "filename": "agents-light.mp4",
+        "sha256": "c7654c555742886c411100fd73caacba8f9246f2c064c5ba7ec86480ec0bc00c",
+        "bytes": 638193,
+        "width": 1600,
+        "height": 1000,
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "frameRate": "30/1",
+        "frames": 480,
+        "duration": 16.0,
+        "audio": false
+      },
+      "poster": {
+        "filename": "agents-light.webp",
+        "sha256": "2e452df03be335c659cb77e259135536584b31fc339ccb58331462eecadc5d9d",
+        "bytes": 97842,
+        "width": 1600,
+        "height": 1000
+      }
+    },
+    {
+      "name": "progress-wide-dark",
+      "raw": {
+        "filename": "workflow-dark.mov",
+        "sha256": "74f6d4d9a262fea66cbf951e305305477fbc75ce370381173cee4b966d4e9845",
+        "width": 3840,
+        "height": 2160
+      },
+      "cuts": [
+        [
+          2,
+          5
+        ],
+        [
+          14,
+          20
+        ],
+        [
+          30,
+          34
+        ],
+        [
+          38,
+          43
+        ],
+        [
+          63,
+          67
+        ]
+      ],
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ],
+      "posterAt": 18,
+      "video": {
+        "filename": "progress-wide-dark.mp4",
+        "sha256": "4109da4afac5504ad6ecafe1eb9ac47265c0486077d8039625fbc49bc2fb3e70",
+        "bytes": 975622,
+        "width": 1600,
+        "height": 900,
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "frameRate": "30/1",
+        "frames": 660,
+        "duration": 22.0,
+        "audio": false
+      },
+      "poster": {
+        "filename": "progress-wide-dark.webp",
+        "sha256": "d030c839843b267c9d88bbf272ac153496a72c0bbb276afe9dac5a1f925d56a1",
+        "bytes": 71670,
+        "width": 1600,
+        "height": 900
+      }
+    },
+    {
+      "name": "progress-wide-light",
+      "raw": {
+        "filename": "workflow-light.mov",
+        "sha256": "d9714dadee715599a5e7c38ea6cecd518e804ae3e9ba69e19b75d13379e0b617",
+        "width": 3840,
+        "height": 2160
+      },
+      "cuts": [
+        [
+          2,
+          5
+        ],
+        [
+          14,
+          20
+        ],
+        [
+          30,
+          34
+        ],
+        [
+          38,
+          43
+        ],
+        [
+          63,
+          67
+        ]
+      ],
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ],
+      "posterAt": 18,
+      "video": {
+        "filename": "progress-wide-light.mp4",
+        "sha256": "e509126c9a0623bd6ae44ce8f1ce754bd21879ce6850ca7267d9d86d8f527a19",
+        "bytes": 945218,
+        "width": 1600,
+        "height": 900,
+        "codec": "h264",
+        "pixelFormat": "yuv420p",
+        "frameRate": "30/1",
+        "frames": 660,
+        "duration": 22.0,
+        "audio": false
+      },
+      "poster": {
+        "filename": "progress-wide-light.webp",
+        "sha256": "55580c4b87599537bb2c932f7bbcecda17ab73c357b1815d5402ff2ef840bc73",
+        "bytes": 71084,
+        "width": 1600,
+        "height": 900
+      }
+    }
+  ],
+  "captureComplete": true,
+  "pendingScreenshots": [],
+  "openGraph": {
+    "filename": "og.jpg",
+    "sha256": "b3c64dde58dc8112f46447cb15d56105a1e2db378db0e53741ed31f64689bea7",
+    "bytes": 80274,
+    "width": 1200,
+    "height": 630,
+    "raw": {
+      "filename": "workflow-dark.mov",
+      "sha256": "74f6d4d9a262fea66cbf951e305305477fbc75ce370381173cee4b966d4e9845",
+      "width": 3840,
+      "height": 2160
+    },
+    "crop": [
+      0,
+      0,
+      3840,
+      2016
+    ],
+    "frameAt": 18
+  },
+  "screenshots": [
+    {
+      "filename": "agents-dark.webp",
+      "sha256": "08044748e69a1e2725ff5a5bec98dcb30f250bdd8699160f536f60f5f4ed69ba",
+      "bytes": 149326,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "agents-ready-dark.png",
+        "sha256": "8e9e1915b2c3cca8ad2ed0bfb3e92ae7c52a811004e1956b86743196d4615c9e",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "agents-light.webp",
+      "sha256": "1ca5e096d0dba34fd3e5076a6bc70f7cd9f56a430f1a1c12d33f631d3f3f0e10",
+      "bytes": 145736,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "agents-ready-light.png",
+        "sha256": "f6ea15856f7c5958b77af0ed445ef36ec83adb420c80272767fb57d9c07855ea",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "board-wide-dark.webp",
+      "sha256": "6d28c5302aefe0b17f4ffb73d79c4d1a5986e8ec0d9f92639f2146713c7e8594",
+      "bytes": 45132,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "board-wide-dark-final.png",
+        "sha256": "00feff1d3f72e80110030c09c203a2a9fc8ec81c695eee9fff32e35e49c1fa1b",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "board-wide-light.webp",
+      "sha256": "a7304a4f9d94b034f12f678f162cb0d2d1e4c07cb3cc45447b5891625e0eae21",
+      "bytes": 42454,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "board-wide-light-final.png",
+        "sha256": "caed2b8aa9435a888cdda7d0bca96a60e963760323c0cf01da793da13a366eb7",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "changes-generate-dark.webp",
+      "sha256": "f4127cbb9faea03134f3b366c2df2afdd1b5ff43b096ddadfbe40d2c12e93435",
+      "bytes": 36214,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "diff-view-dark.png",
+        "sha256": "dd47e7ea4966acc17b61b4a323ecfacf146872fd1d238340c4f1e248a145096b",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "changes-generate-light.webp",
+      "sha256": "4003d771456d01ba4325051026b7bb4578cd294e23f76e65cfe875f83ac945c1",
+      "bytes": 34670,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "diff-view-light.png",
+        "sha256": "3fd4f8b3b38535c02a8fe869562c71c404a5b58e8bb1d1c2b8e23c5dbe29cf52",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "docs-dark.webp",
+      "sha256": "ede6bc4113025764da5086b8ffc5283496ee75deada4a7a73d18048c8382fffb",
+      "bytes": 46354,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "docs-dark.png",
+        "sha256": "5ab543161cb810b0d8f6012b638b6845a5db4b2bfbed164d834b739e8e02f63b",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "docs-light.webp",
+      "sha256": "4e95a4704e21ced399c28d982e2176c031a9909b6c5d6e0cc51933ef2d791161",
+      "bytes": 44288,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "docs-light.png",
+        "sha256": "ddc8e7f546f0c4304ecc67b2af280fbe22438d90e68c1ba43645d10ada43a75a",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "editor-dark.webp",
+      "sha256": "32860cd0980b82215990a0311909fc05497e6f81c9a3c0435c2c3c92bb59981e",
+      "bytes": 41046,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "editor-dark.mov",
+        "sha256": "70d0141e9f660369d2e513883f400dd2e9226f698f0222c89485130cd8eb9bab",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ],
+      "frameAt": 2.0
+    },
+    {
+      "filename": "editor-light.webp",
+      "sha256": "1db84f7721bf1e3c90083ee4983af9e6c71725f7afbcf084a9319c947c31732b",
+      "bytes": 35084,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "editor-ready-light.png",
+        "sha256": "36bf34efb924459b4ef7b2e30957722ecb6c2da21d93d9b5586d25d0fdd3748e",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "history-dark.webp",
+      "sha256": "fcbe2eb8f7688787a0e9f952ca83d4db25a3c2ff3375d5e545980a2c729cc6b3",
+      "bytes": 36696,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "history-main-dark.png",
+        "sha256": "055a905c8931a0d8403bc0795bc29e905552981cbd6526fc1db42f379967218b",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "history-light.webp",
+      "sha256": "9f242924143569491fa6699a881039d9ec5666b8a2932033b3703ac40f4bc6b8",
+      "bytes": 34208,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "history-main-light.png",
+        "sha256": "b1e7524264f62c0a86ad3e6877b584e2d887ca9498e04746da01928bff0fa1b6",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "palette-dark.webp",
+      "sha256": "16176f810b050934f249a1ee767a6d54296959e972b43d2a44744ed81643e736",
+      "bytes": 48896,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "palette-dark-final.png",
+        "sha256": "14df2d87c968727e71e1a68c4b4c9a52505a0ee34cfcfed7866d0248ddafad87",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "palette-light.webp",
+      "sha256": "7db79ca37a4a192f4e4f77e58a2e2c74077c0349edf4e7bec6bb0849401bf5f0",
+      "bytes": 46360,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "palette-light-final.png",
+        "sha256": "d757b9f2a8680f31f7b281b7478ac8663c21cef55f3ab9756ac26fc65b5ebfed",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "progress-dark.webp",
+      "sha256": "d6132a0919e91d237215e73220bb40368e8c5497fdeaf721b720631846962fb6",
+      "bytes": 46948,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "progress-dark-final.png",
+        "sha256": "1ed289e4fdef7ddf5f997b7d04d107fdf83ec9941d26f0af91eb81a15ed33b49",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "progress-light.webp",
+      "sha256": "0077c7989f310c33236758af41f6c2078954cc2864ef0e07d567640ddb0ac9d3",
+      "bytes": 44282,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "progress-light-final.png",
+        "sha256": "100aaa5559ad967503deec58a57b39ebb6aef59c7771ed7a1a6ad95f16de3673",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "progress-not-taken-dark.webp",
+      "sha256": "2575c49ee1348c90fba05c060214d7fd96a36df516ab7c1cf6dd657bd0a580a4",
+      "bytes": 116662,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "progress-not-taken-dark.png",
+        "sha256": "14cbe674c7e7e62d829aa0ccb21a7749958ef5da3c391f1e11d62d4619514f7b",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "progress-not-taken-light.webp",
+      "sha256": "8a3692ee3662e367c3ff385383c70923cce3f4fff46127af9b4942dc993b9568",
+      "bytes": 114928,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "progress-not-taken-light.png",
+        "sha256": "96625d8011b2a72650d3b0335d6ec5535dfdc841e1dc62f217c35a95f694dab1",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "progress-took-feature-dark.webp",
+      "sha256": "2ca76b5c0c330a45c878ddbf2b14d351cecf94c6099b3fc48d94894a908f37d4",
+      "bytes": 117766,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "feature-taken-dark.png",
+        "sha256": "a90d7baeb0afb3ababe3af2565dabc26d1fe85c68b1531e19e34a2524ca0d25d",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "progress-took-feature-light.webp",
+      "sha256": "2ddea9f52bb4bdd325ccdc124e95ed356f83b694f6cc362e22817938fc97de97",
+      "bytes": 114792,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "feature-taken-light.png",
+        "sha256": "32c9b1ef766853565bee7248457780151436fc67157d540e219b5b9eab06a9c6",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "settings-review-agent-dark.webp",
+      "sha256": "9271b6bcc4a00300cfde98b5cd7c0aed77f6e599be9bafc77e65b9d71c0b2ec3",
+      "bytes": 55180,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "review-settings-dark.png",
+        "sha256": "cafdf9ca116d998919916b90bdb93aaaeeb2e4cad0c698f0ba4ee5cf771bcfef",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "settings-review-agent-light.webp",
+      "sha256": "7e81126fba1cedf74bc0285263cc14bf4dca6dcb726bdd00fa1d08a0315adc28",
+      "bytes": 53342,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "review-settings-light.png",
+        "sha256": "d7a6fca29f00a4f4e8731ec5c67ada121f777c7c1ef6ea64c52146914e0ce1b2",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "settings-stages-dark.webp",
+      "sha256": "731d0e5e6168da4ab5b3f7ac4216da8b87e3b05d4bd05e728c10d1bf39001721",
+      "bytes": 53254,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "settings-dark.mov",
+        "sha256": "68b3d689fefb1b936173ec0457d5b7042ba6852092c7bf28901a69818b458e40",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ],
+      "frameAt": 3.0
+    },
+    {
+      "filename": "settings-stages-light.webp",
+      "sha256": "0e3e6af090ca589efd7df1ad3430d6b13ceae34bffb9039dde014a8a1fcb2fa7",
+      "bytes": 53858,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "settings-light.mov",
+        "sha256": "629af84236f1595efdf854436abf09f04be5ec4543bcc26e0416c445525c412f",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ],
+      "frameAt": 3.0
+    },
+    {
+      "filename": "stage-agent-picker-dark.webp",
+      "sha256": "ece0982002e6529652d14df02d4236f52903477a1732ac26e8c016fdf59323a5",
+      "bytes": 57762,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "stage-agent-picker-dark.png",
+        "sha256": "132fa1676b0af7024239b10681e243f7ac6435fb04370866dac872f9c6c67e75",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "stage-agent-picker-light.webp",
+      "sha256": "e2b755872646b62034bd0b7ace280156e50827ffb18845244dfec6c072bc8426",
+      "bytes": 55720,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "stage-agent-picker-light.png",
+        "sha256": "236ef666ffb908a7baedb32060393b191cf9b9798d99c6b48bf92427fa714162",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "stages-branch-dark.webp",
+      "sha256": "e0175b0e654cf32c271df436ba69145039f03278796c9c045078752af14361e8",
+      "bytes": 42720,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "stages-branch-dark-final.png",
+        "sha256": "bf9193036be2eb9e24bfccbe54161859693c9c6141eab211200fc5adde50e124",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "stages-branch-light.webp",
+      "sha256": "1e8143720778bdb3d1adfec92b4dd5864861677a66d358a340f89f626ff400d5",
+      "bytes": 40396,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "stages-branch-light.png",
+        "sha256": "cbe431a00a3a896d858184d05c5997bb92380d600033e99489b21892e41e2696",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "start-task-dark.webp",
+      "sha256": "a0f1f713a27cb187e655e6f79737c72a302a6c66e7784ebbf0dd858747c4e17d",
+      "bytes": 63012,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "start-task-dark.png",
+        "sha256": "2597569bcbe9d8eab893efa724b2556fe951b77a6d921491253dca755b4eeba4",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "start-task-light.webp",
+      "sha256": "95a53e19df687bd13c27a1128f304cfd582db12a1b000e6f925c5ec66f9aee8d",
+      "bytes": 63206,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "start-task-light.png",
+        "sha256": "e5ce32261525fc1b5aa6f16e0644b9744ba2fb4ff3c1d9621730a326cc1d407f",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "start-task-skill-dark.webp",
+      "sha256": "bf5c258e216e40a3b7a2c18cec7f5f13f9e56a791adee9052edcc869133d4483",
+      "bytes": 37804,
+      "width": 800,
+      "height": 1127,
+      "raw": {
+        "filename": "start-task-skill-dark.png",
+        "sha256": "43cd6d861425315e9779202b94207ee97198183ad64ab7ec1375706b34f11fdc",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        1390,
+        292,
+        1060,
+        1492
+      ]
+    },
+    {
+      "filename": "start-task-skill-light.webp",
+      "sha256": "7d5608e7dcdba67965e4a0ee7ded2659358243da7ef9f4312e0cadbe7c14d291",
+      "bytes": 33662,
+      "width": 800,
+      "height": 1127,
+      "raw": {
+        "filename": "start-task-skill-light.png",
+        "sha256": "c417ac1729ff1e12bb33f66e71895ff0e3706591bc514aae04d3fa16d2a57b62",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        1390,
+        292,
+        1060,
+        1492
+      ]
+    },
+    {
+      "filename": "table-dark.webp",
+      "sha256": "68c24a1ab9851b1905316f797b26be6808552e14b209529706d56114f05d631c",
+      "bytes": 46144,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "table-dark-final.png",
+        "sha256": "9f722f06d44981ec7bf8a01c361b2dd60f0967576f3c6bf5d4618a2e435f1639",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "table-light.webp",
+      "sha256": "cf0169a0dd18e31c6ecf678b0e13f7e8dc66fbc676d4e3e9a2a2f4a8e9488ddb",
+      "bytes": 44606,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "table-light-final.png",
+        "sha256": "4258298077f225f5e51cdf684385bdefdcbf7766b77aa9197c0897cd7969d086",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "task-details-dark.webp",
+      "sha256": "59a97d00e6082ae012ff9bc2202a71eec44b25c85e80bfbe404ac8dbe442fec2",
+      "bytes": 165512,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "task-details-dark.png",
+        "sha256": "4a6bc966756425daad43356eb9ed9be8f09ffd6f485dc95e3842aa3d238fe5f7",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "task-details-light.webp",
+      "sha256": "72d956ad5c7d0025e5a1e5b66c695da8452741b8b52a1411fbd1df26ea860da4",
+      "bytes": 162954,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "task-details-light.png",
+        "sha256": "df1fe3b8525f44e8c77fe8871518123051a5879ab6f7fb31a13dda46ec651d17",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "task-needs-you-dark.webp",
+      "sha256": "df6ad694acd6a194fba2fc5191fda890b4660a2e58b257171ca143de6905492a",
+      "bytes": 61846,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "question-ready-dark.png",
+        "sha256": "09f38d4cba574ff5c68a966e2633c99ee5582930851c3c4e705b60194b34f117",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "task-needs-you-light.webp",
+      "sha256": "732eabd484d77eeac4109ff1df96a643c22d2b0b9ba65739e626d88605aee6c6",
+      "bytes": 58480,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "question-ready-light.png",
+        "sha256": "6a2e0c62dd48df637ec7bd0a55cfa332b415669c6e469b62cfe070ddbeeb3499",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "task-review-shell5-dark.webp",
+      "sha256": "d7e205e0159f64f35d9202360cda6e2c7c4adb12bcee10422d58fc861a971b72",
+      "bytes": 134260,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "workflow-dark.mov",
+        "sha256": "74f6d4d9a262fea66cbf951e305305477fbc75ce370381173cee4b966d4e9845",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ],
+      "frameAt": 32.0
+    },
+    {
+      "filename": "task-review-shell5-light.webp",
+      "sha256": "6110fe94c103a8b8d946ad43a56492ad538b5e2395445b7a6a97c30f3c102805",
+      "bytes": 133464,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "workflow-light.mov",
+        "sha256": "d9714dadee715599a5e7c38ea6cecd518e804ae3e9ba69e19b75d13379e0b617",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ],
+      "frameAt": 32.0
+    },
+    {
+      "filename": "task-sent-back-dark.webp",
+      "sha256": "fec061cc723356d113d789c8d4c0d297587a204319052d294fb8bcfebfb6ab61",
+      "bytes": 158176,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "task-sent-back-dark.png",
+        "sha256": "203c50e216d995589e84618d40623a80900126ccff3600eea374764330370fe4",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "task-sent-back-light.webp",
+      "sha256": "5e8c6a3e974112f12540e9ae97df66ec1fc1d1e066630a1681c11534fa021e42",
+      "bytes": 154198,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "task-sent-back-light.png",
+        "sha256": "363331c6920bffddb48613c72ab083374e56634cb2236f2e8dad9f2a8df4d281",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "task-side-by-side-dark.webp",
+      "sha256": "d030c839843b267c9d88bbf272ac153496a72c0bbb276afe9dac5a1f925d56a1",
+      "bytes": 71670,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "workflow-dark.mov",
+        "sha256": "74f6d4d9a262fea66cbf951e305305477fbc75ce370381173cee4b966d4e9845",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ],
+      "frameAt": 18.0
+    },
+    {
+      "filename": "task-side-by-side-light.webp",
+      "sha256": "55580c4b87599537bb2c932f7bbcecda17ab73c357b1815d5402ff2ef840bc73",
+      "bytes": 71084,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "workflow-light.mov",
+        "sha256": "d9714dadee715599a5e7c38ea6cecd518e804ae3e9ba69e19b75d13379e0b617",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ],
+      "frameAt": 18.0
+    },
+    {
+      "filename": "task-spec-approve-dark.webp",
+      "sha256": "02786bbd79237493f8fc843f81a2030048dc8b3fb8e805bf01143b180a41c3b3",
+      "bytes": 76380,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "spec-card-dark.png",
+        "sha256": "471d452b85868e71a48b35042a819324bb3e65ef954711b886faa63275c72bdc",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    },
+    {
+      "filename": "task-spec-approve-light.webp",
+      "sha256": "390879035cc18e8e1218f4e30f59f976b39ddda6271a302a7f3437efa75cb97d",
+      "bytes": 74922,
+      "width": 1600,
+      "height": 900,
+      "raw": {
+        "filename": "spec-card-light.png",
+        "sha256": "02a998bf90b59f2e45dad26ce8340ec4c5557e5514db9aa0d71caddd62f1482b",
+        "width": 3840,
+        "height": 2160
+      },
+      "crop": [
+        0,
+        0,
+        3840,
+        2160
+      ]
+    }
+  ]
+}
